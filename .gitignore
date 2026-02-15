@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.DS_Store
+*.xcuserdata
+*.xcworkspace
+.idea/
+.vscode/
+*.log
+.env
