@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mintcondition.com/sitemap.xml
