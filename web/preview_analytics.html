@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrailWatch — Advanced Analytics Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-deep: #050505;
+            --bg-panel: #0F0F0F;
+            --bg-card: #141414;
+            --accent-orange: #FF5C00;
+            --accent-orange-dim: rgba(255, 92, 0, 0.1);
+            --text-main: #E0E0E0;
+            --text-dim: #707070;
+            --border: #222;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Header ── */
+        nav {
+            height: 48px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            gap: 24px;
+            background: var(--bg-panel);
+        }
+
+        .logo {
+            font-weight: 700;
+            color: var(--accent-orange);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -0.05em;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-item {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav-item.active {
+            color: var(--text-main);
+        }
+
+        .nav-item:hover {
+            color: var(--text-main);
+        }
+
+        /* ── Layout ── */
+        .terminal-container {
+            display: grid;
+            grid-template-columns: 320px 1fr 320px;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .panel {
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            letter-spacing: 0.1em;
+            display: flex;
+            justify-content: space-between;
+            background: var(--bg-panel);
+        }
+
+        /* ── Charts & Content ── */
+        .main-view {
+            padding: 24px;
+            overflow-y: auto;
+            background: radial-gradient(circle at top right, rgba(255, 92, 0, 0.05), transparent 40%);
+        }
+
+        .chart-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .chart-label {
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            font-size: 10px;
+            color: var(--text-dim);
+        }
+
+        .canvas-placeholder {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            padding-top: 40px;
+        }
+
+        .bar {
+            flex: 1;
+            background: var(--accent-orange-dim);
+            border: 1px solid var(--accent-orange);
+            transition: height 1s ease-out;
+            position: relative;
+        }
+
+        .bar:hover {
+            background: var(--accent-orange);
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 16px;
+        }
+
+        .metric-val {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-orange);
+        }
+
+        .metric-label {
+            font-size: 10px;
+            color: var(--text-dim);
+            margin-top: 4px;
+        }
+
+        /* ── Sidebar Items ── */
+        .scroll-area {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .list-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+
+        .list-item:hover {
+            background: var(--bg-card);
+        }
+
+        .list-item.selected {
+            border-left: 2px solid var(--accent-orange);
+            background: var(--bg-card);
+        }
+
+        .tag {
+            font-size: 9px;
+            padding: 2px 4px;
+            background: #222;
+            border-radius: 2px;
+            color: var(--text-dim);
+        }
+
+        .status-up {
+            color: #00FF94;
+        }
+
+        .status-down {
+            color: #FF4D4D;
+        }
+
+        /* ── Animations ── */
+        .flicker {
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes flicker {
+            from {
+                opacity: 0.9;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo"><i data-lucide="activity"></i> GRAILWATCH // TERMINAL</div>
+        <div class="nav-items">
+            <a href="#" class="nav-item">OS_MAIN</a>
+            <a href="#" class="nav-item active">ANALYTICS_V2</a>
+            <a href="#" class="nav-item">VAULT_ACCESS</a>
+        </div>
+        <div style="margin-left: auto; color: var(--text-dim); font-size: 11px;">
+            SYSTEM_STATUS: <span class="status-up">OPTIMAL</span>
+        </div>
+    </nav>
+
+    <div class="terminal-container">
+        <!-- Sidebar: Assets -->
+        <div class="panel">
+            <div class="panel-header">
+                <span>Active_Assets</span>
+                <span>Vol_24h</span>
+            </div>
+            <div class="scroll-area">
+                <div class="list-item selected">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <strong>ASM_#300</strong>
+                        <span class="status-up">+12.4%</span>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <span class="tag">CGC_9.8</span>
+                        <span class="tag">TOP_10</span>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <strong>HULK_#181</strong>
+                        <span class="status-up">+4.1%</span>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <span class="tag">CBCS_9.6</span>
+                    </div>
+                </div>
+                <div class="list-item">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                        <strong>GSX_#1</strong>
+                        <span class="text-dim">0.0%</span>
+                    </div>
+                    <div style="display: flex; gap: 8px;">
+                        <span class="tag">CGC_9.4</span>
+                    </div>
+                </div>
+                <!-- Repeat list items -->
+                <script>
+                    for (let i = 0; i < 10; i++) {
+                        document.write(`
+                            <div class="list-item">
+                                <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+                                    <strong>ASSET_ID_${1000 + i}</strong>
+                                    <span class="status-down">-2.1%</span>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <span class="tag">UNCERTIFIED</span>
+                                </div>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="main-view">
+            <div class="data-grid">
+                <div class="metric-card">
+                    <div class="metric-val">$5,240.00</div>
+                    <div class="metric-label">CURRENT_MARKET_PRICE</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-val">1.482</div>
+                    <div class="metric-label">VOLATILITY_INDEX</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-val">98.2%</div>
+                    <div class="metric-label">LIQUIDITY_SCORE</div>
+                </div>
+            </div>
+
+            <div class="chart-box">
+                <div class="chart-label">PRICE_HISTORY_60D (ASSET: ASM_#300)</div>
+                <div class="canvas-placeholder" id="barChart">
+                    <!-- Bars generated by script -->
+                </div>
+            </div>
+
+            <div class="chart-box" style="height: 200px;">
+                <div class="chart-label">PREDICTIVE_MODELS // MONTE_CARLO</div>
+                <svg viewBox="0 0 800 100" style="width: 100%; height: 100%; margin-top: 20px;">
+                    <path d="M0,80 L100,75 L200,85 L300,60 L400,65 L500,40 L600,45 L700,20 L800,25" fill="none"
+                        stroke="var(--accent-orange)" stroke-width="2" />
+                    <path d="M0,80 L100,70 L200,75 L300,50 L400,55 L500,30 L600,35 L700,10 L800,15" fill="none"
+                        stroke="var(--accent-orange)" stroke-width="1" stroke-dasharray="4" opacity="0.3" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Sidebar: Logs -->
+        <div class="panel" style="border-right: none; border-left: 1px solid var(--border);">
+            <div class="panel-header">System_Logs</div>
+            <div class="scroll-area" style="padding: 12px; font-size: 10px; line-height: 1.6;">
+                <div style="color: var(--accent-orange);">[INIT] ANALYTICS_ENGINE_V2.0</div>
+                <div style="color: var(--text-dim);">[SCAN] EBAY_API_POLLING... DONE</div>
+                <div style="color: var(--text-dim);">[SCAN] HERITAGE_AUCTIONS... DONE</div>
+                <div style="color: var(--text-dim);">[CALC] VOLATILITY_ALGO_BETA...</div>
+                <div style="color: #00FF94;">[MATCH] NEW_LISTING: ASM_300_CGC_9.8</div>
+                <div style="color: var(--text-dim);">[WARN] LIQUIDITY_GAP_DETECTED</div>
+                <div style="color: var(--text-dim); margin-top: 10px;">> _waiting for input...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Generate Chart Bars
+        const chart = document.getElementById('barChart');
+        for (let i = 0; i < 40; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            const height = Math.random() * 80 + 10;
+            bar.style.height = height + '%';
+            chart.appendChild(bar);
+        }
+    </script>
+</body>
+
+</html>

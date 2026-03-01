@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrailWatch — The Vault Showcase</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg: #0A0A0B;
+            --bg-accent: #111112;
+            --gold: #D4AF37;
+            --gold-glow: rgba(212, 175, 55, 0.2);
+            --text-main: #FFFFFF;
+            --text-dim: #888888;
+            --font-display: 'Outfit', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            --border: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            font-family: var(--font-display);
+            overflow-x: hidden;
+            background: radial-gradient(circle at 50% -20%, #1a1a1c 0%, var(--bg) 60%);
+        }
+
+        /* ── Header ── */
+        header {
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        .vault-stats {
+            display: flex;
+            gap: 40px;
+            font-size: 14px;
+        }
+
+        .stat-item span {
+            color: var(--gold);
+            font-weight: 700;
+            margin-right: 8px;
+        }
+
+        /* ── Gallery ── */
+        .gallery-container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 40px;
+        }
+
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .gallery-title h1 {
+            font-family: var(--font-serif);
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(180deg, #fff 0%, #888 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 60px;
+        }
+
+        .vault-item {
+            position: relative;
+            background: var(--bg-accent);
+            padding: 40px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            overflow: hidden;
+        }
+
+        .vault-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .vault-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px var(--gold-glow);
+        }
+
+        .vault-item:hover::before {
+            opacity: 1;
+        }
+
+        .comic-display {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: #000;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: transform 0.5s;
+        }
+
+        .vault-item:hover .comic-display {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .case-reflection {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 40%, rgba(255, 255, 255, 0.05) 100%);
+            pointer-events: none;
+        }
+
+        .rarity-seal {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 80px;
+            height: 80px;
+            background: var(--gold);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 800;
+            color: #000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .asset-info h3 {
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+        }
+
+        .asset-meta {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-dim);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+
+        .performance-chip {
+            background: rgba(0, 255, 148, 0.1);
+            color: #00FF94;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* ── Spotlight Animation ── */
+        .spotlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(255, 255, 255, 0.05) 0%, transparent 20%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand">GrailWatch</div>
+        <div class="vault-stats">
+            <div class="stat-item"><span>12</span> Assets</div>
+            <div class="stat-item"><span>$142.5k</span> Net Value</div>
+            <div class="stat-item"><span>+24.8%</span> Yearly ROI</div>
+        </div>
+        <div style="cursor: pointer;"><i data-lucide="menu"></i></div>
+    </header>
+
+    <div class="gallery-container">
+        <div class="gallery-title">
+            <p
+                style="color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-size: 12px; margin-bottom: 16px;">
+                Private Collection</p>
+            <h1>The Grand Vault</h1>
+        </div>
+
+        <div class="gallery-grid">
+            <!-- Asset 1 -->
+            <div class="vault-item">
+                <div class="rarity-seal">9.8</div>
+                <div class="comic-display">
+                    <img src="https://images.unsplash.com/photo-1588497859490-85d1c17db96d?auto=format&fit=crop&q=80&w=600"
+                        style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+                    <div class="case-reflection"></div>
+                </div>
+                <div class="asset-info">
+                    <h3>Amazing Spider-Man #300</h3>
+                    <div class="asset-meta">
+                        <div>Acquired Jan 2024</div>
+                        <div class="performance-chip">+142% ROI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asset 2 -->
+            <div class="vault-item">
+                <div class="rarity-seal">9.6</div>
+                <div class="comic-display">
+                    <img src="https://images.unsplash.com/photo-1620336655174-3258593466ae?auto=format&fit=crop&q=80&w=600"
+                        style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+                    <div class="case-reflection"></div>
+                </div>
+                <div class="asset-info">
+                    <h3>Incredible Hulk #181</h3>
+                    <div class="asset-meta">
+                        <div>Acquired Mar 2023</div>
+                        <div class="performance-chip">+84% ROI</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Asset 3 -->
+            <div class="vault-item">
+                <div class="rarity-seal">9.4</div>
+                <div class="comic-display">
+                    <img src="https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?auto=format&fit=crop&q=80&w=600"
+                        style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+                    <div class="case-reflection"></div>
+                </div>
+                <div class="asset-info">
+                    <h3>Giant-Size X-Men #1</h3>
+                    <div class="asset-meta">
+                        <div>Acquired Nov 2023</div>
+                        <div class="performance-chip">+12% ROI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+
+        // Mouse Spotlight Effect
+        document.querySelectorAll('.vault-item').forEach(item => {
+            item.addEventListener('mousemove', e => {
+                const rect = item.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                item.style.setProperty('--x', `${x}%`);
+                item.style.setProperty('--y', `${y}%`);
+            });
+        });
+    </script>
+</body>
+
+</html>

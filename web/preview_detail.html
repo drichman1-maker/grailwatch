@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrailWatch — Deep Dive Analysis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --bg-primary: #0A0C10;
+            --bg-secondary: #14171C;
+            --bg-card: #1C2128;
+            --accent: #00D1FF;
+            --emerald: #00FF94;
+            --text-primary: #F0F6FC;
+            --text-secondary: #8B949E;
+            --border: #30363D;
+            --radius-lg: 20px;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            height: 72px;
+            background: rgba(10, 12, 16, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 60px;
+        }
+
+        .comic-hero img {
+            width: 100%;
+            border-radius: var(--radius-lg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .stat-value {
+            font-family: 'Outfit';
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .price-chart {
+            height: 300px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .listing-table {
+            width: 100%;
+            margin-top: 40px;
+            border-collapse: collapse;
+        }
+
+        .listing-table th {
+            text-align: left;
+            padding: 12px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .listing-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .deal-badge {
+            background: var(--emerald);
+            color: #000;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div style="font-family: 'Outfit'; font-weight: 800; font-size: 20px;">GRAIL<span>WATCH</span></div>
+        <nav style="margin-left: 40px; display: flex; gap: 24px; font-size: 14px; font-weight: 500;">
+            <a href="preview_home.html" style="color: var(--text-secondary); text-decoration: none;">Command Center</a>
+            <a href="preview_search.html" style="color: var(--text-secondary); text-decoration: none;">Discovery</a>
+            <a href="#" style="color: var(--text-primary); text-decoration: none;">Deep Dive</a>
+        </nav>
+    </header>
+
+    <div class="detail-container">
+        <div class="comic-hero">
+            <img src="https://images.unsplash.com/photo-1588497859490-85d1c17db96d?auto=format&fit=crop&q=80&w=800"
+                alt="ASM 300">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Market FMV</div>
+                    <div class="stat-value">$5,240</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Price Delta</div>
+                    <div class="stat-value" style="color: var(--emerald);">+12.4%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comic-info">
+            <h1 style="font-family: 'Outfit'; font-size: 40px; margin-bottom: 8px;">Amazing Spider-Man #300</h1>
+            <p style="color: var(--text-secondary); font-size: 18px; margin-bottom: 24px;">1st Appearance of Venom by
+                Todd McFarlane</p>
+
+            <div style="display: flex; gap: 12px;">
+                <div
+                    style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); font-size: 14px;">
+                    <strong>Publisher:</strong> Marvel</div>
+                <div
+                    style="background: var(--bg-secondary); padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); font-size: 14px;">
+                    <strong>Era:</strong> Copper Age</div>
+            </div>
+
+            <div class="price-chart">
+                <!-- Simple SVG Chart -->
+                <svg width="600" height="200" viewBox="0 0 600 200" style="width: 90%;">
+                    <path d="M0,180 L100,160 L200,170 L300,110 L400,90 L500,50 L600,20" fill="none"
+                        stroke="var(--emerald)" stroke-width="4" stroke-linecap="round" />
+                    <circle cx="600" cy="20" r="6" fill="var(--emerald)" />
+                </svg>
+                <div
+                    style="position: absolute; bottom: 20px; left: 20px; font-size: 11px; color: var(--text-tertiary);">
+                    12-MONTH PRICE VELOCITY</div>
+            </div>
+
+            <table class="listing-table">
+                <thead>
+                    <tr>
+                        <th>PLATFORM</th>
+                        <th>GRADE</th>
+                        <th>PRICE</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>eBay</td>
+                        <td>CGC 9.8</td>
+                        <td style="font-family: 'JetBrains Mono'; font-weight: 600;">$5,400.00</td>
+                        <td><span class="deal-badge">FMV MATCH</span></td>
+                    </tr>
+                    <tr>
+                        <td>MyComicShop</td>
+                        <td>CGC 9.8</td>
+                        <td style="font-family: 'JetBrains Mono'; font-weight: 600; color: var(--emerald);">$4,950.00
+                        </td>
+                        <td><span class="deal-badge" style="background: var(--accent);">GREAT DEAL</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>
