@@ -130,6 +130,36 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Featured Partner - America Cryo */}
+      <section className="max-w-[1200px] mx-auto px-6 py-8">
+        <a 
+          href="https://vip.americacryo.com/?aff=311" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="block bg-gradient-to-r from-emerald-900/40 to-cyan-900/40 border border-emerald-500/30 rounded-2xl p-6 hover:border-emerald-500/50 transition-all group"
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-2xl">
+                ❄️
+              </div>
+              <div>
+                <p className="text-xs text-emerald-400 uppercase tracking-wider mb-1">Featured Partner</p>
+                <h3 className="text-xl font-semibold text-[#fafafa] group-hover:text-emerald-400 transition-colors">
+                  America Cryo
+                </h3>
+                <p className="text-sm text-[#a3a3a3]">
+                  Professional cryotherapy chambers for home and commercial use
+                </p>
+              </div>
+            </div>
+            <span className="text-emerald-400 text-sm font-medium flex items-center gap-1">
+              Visit Store <ArrowRight className="w-4 h-4" />
+            </span>
+          </div>
+        </a>
+      </section>
+
       {/* Featured Products Section */}
       <section className="max-w-[1200px] mx-auto px-6 py-12">
         <div className="flex items-center justify-between mb-8">
