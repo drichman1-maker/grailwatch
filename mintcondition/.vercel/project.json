@@ -1,0 +1,16 @@
+{
+  "projectId": "prj_HnTCR6PnFdo7eFse3gatYBh3HdI6",
+  "orgId": "team_swnY5a7gP7n8STmks6Ve1GVA",
+  "projectName": "mintcondition",
+  "settings": {
+    "createdAt": 1770937587773,
+    "framework": null,
+    "devCommand": null,
+    "installCommand": null,
+    "buildCommand": null,
+    "outputDirectory": null,
+    "rootDirectory": null,
+    "directoryListing": false,
+    "nodeVersion": "24.x"
+  }
+}

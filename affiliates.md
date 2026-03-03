@@ -17,9 +17,12 @@ Last updated: 2026-03-03 09:30 AM EST
 | Hyperice | Massage/Recovery | 8-12% | 🔄 Apply Now | - | Also has Normatec |
 | CurrentBody | Red Light Masks | 10-15% | 🔄 Apply Now | - | FDA-cleared devices |
 | Omnilux | Red Light Masks | 10-15% | 🔄 Apply Now | - | Medical-grade LEDs |
-| IQAir | Air Purifiers | 8-10% | 🔄 Apply Now | - | Medical-grade HEPA |
-| Molekule | Air Purifiers | 8-10% | 🔄 Apply Now | - | PECO technology |
-| Austin Air | Air Purifiers | 8-10% | 🔄 Apply Now | - | 5-year filters |
+| IQAir | Air Purifiers | 8-10% | 🔄 Apply Now | - | Moved to separate site |
+| Molekule | Air Purifiers | 8-10% | 🔄 Apply Now | - | Moved to separate site |
+| Austin Air | Air Purifiers | 8-10% | 🔄 Apply Now | - | Moved to separate site |
+| Four Sigmatic | Mushroom Coffee | 10-15% | ✅ Applied 2026-03-03 | - | Nootropics focus |
+| RYZE | Mushroom Coffee | ? | 🔄 Not Started | - | Trending brand |
+| MUD/WTR | Coffee Alternative | ? | 🔄 Not Started | - | Mushroom-based |
 | Adorama | Photo/Tech | ✅ (verify) | - | - | Need to confirm approval |
 
 ## Rejected/Need Reapply
@@ -78,9 +81,10 @@ Last updated: 2026-03-03 09:30 AM EST
 - [ ] Apply Therabody (Theragun)
 - [ ] Apply CurrentBody
 - [ ] Apply Omnilux
-- [ ] Apply IQAir
-- [ ] Apply Molekule
-- [ ] Apply Austin Air
+//MOVED TO SEPARATE AIR QUALITY SITE:
+//- [ ] Apply IQAir
+//- [ ] Apply Molekule
+//- [ ] Apply Austin Air
 - [ ] Apply Hyperice
 - [ ] Apply Theragun
 - [ ] Apply NVIDIA

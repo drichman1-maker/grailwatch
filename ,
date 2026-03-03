@@ -1,0 +1,44 @@
+# March 3, 2026 - Session Summary
+
+## Completed
+
+### Mactrackr
+- ✅ Search bar (Fuse.js, Cmd+K shortcut)
+- ✅ SEO fixes (meta descriptions, schema markup, internal linking)
+- ✅ Sitemap updated with all 12 blog posts
+- ⚠️ 4 articles were previously undeployed (now fixed)
+
+### Health Index
+- ✅ Source code moved: `grailwatch/web-next/` → `healthindex-frontend/`
+- ✅ Package.json renamed to "healthindex"
+- ✅ Search bar implemented (Next.js + Fuse.js)
+- ⚠️ JSON5 cache error fixed (rm -rf .next node_modules)
+
+### Affiliates
+- ✅ Joovv applied (LeadDyno)
+- ✅ Four Sigmatic applied (~15% commission)
+- ✅ Tracker updated (affiliates.md)
+
+### Strategy Docs Created
+- `reddit.md` - Subreddit targeting + posting strategy
+- `twitter-strategy.md` - Content calendar + growth tactics
+
+### Discord
+- ⏸️ Configured but paused (bot token added, not tested)
+
+## Next Session Priorities
+1. **Blog content** - Write/format posts for Health Index & Mactrackr
+2. **Social media push** - Twitter threads, Reddit posts, scheduling
+3. **Tech fixes** - Remaining code issues, search optimization
+4. **Affiliate applications** - Mito Red Light, RYZE, Everyday Dose, etc.
+5. **SEO** - Competitor analysis, keyword targeting
+
+## Blockers
+- Code fix agent found 235 ESLint errors (mostly unescaped quotes)
+- Health Index needs real affiliate IDs (not placeholders)
+- Need competitor analysis for differentiation strategy
+
+## Notes
+- Mactrackr search: http://localhost:3000 (Cmd+K)
+- Health Index search: http://localhost:3002 (Cmd+K)
+- Always commit blog changes: `git add -A && git commit -m "msg" && git push origin main`
