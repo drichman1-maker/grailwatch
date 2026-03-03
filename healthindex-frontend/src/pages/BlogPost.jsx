@@ -3,6 +3,225 @@ import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, BookOpen } from 'lucide-react'
 
 const blogPosts = {
+  'red-light-therapy-for-skin': {
+    id: 'red-light-therapy-for-skin',
+    title: 'Red Light Therapy for Skin: What the Research Actually Says',
+    excerpt: 'Red light therapy has accumulated significant clinical evidence. Here is an honest look at what the research shows for collagen, wrinkles, wound healing, and acne.',
+    date: 'March 3, 2026',
+    readTime: '12 min read',
+    category: 'Education',
+    content: `
+      <p class="intro">
+        Red light therapy has accumulated a significant body of clinical evidence over the past two decades — but the skin benefits are where the science is arguably strongest and most consistent. Here's an honest look at what the research actually shows, what it doesn't, and what that means if you're considering RLT for your skin.
+      </p>
+
+      <section class="category-section">
+        <h2>The Mechanism: Why Light Affects Skin at All</h2>
+        <p>Skin contains a high density of mitochondria, particularly in <strong>fibroblasts</strong> — the cells responsible for producing collagen and elastin. When red and near-infrared wavelengths penetrate the skin, they're absorbed by <strong>cytochrome c oxidase</strong> in the mitochondrial electron transport chain, stimulating increased ATP production.</p>
+
+        <div class="key-difference">
+          <p><strong>More cellular energy means:</strong></p>
+          <ul style="margin-top: 10px;">
+            <li>More active fibroblasts</li>
+            <li>Enhanced collagen synthesis</li>
+            <li>Accelerated tissue repair</li>
+            <li>Reduced oxidative stress</li>
+          </ul>
+        </div>
+
+        <p>This isn't speculative — it's a well-characterized photochemical process replicated across hundreds of peer-reviewed studies.</p>
+      </section>
+
+      <section class="category-section">
+        <h2>What the Research Shows</h2>
+
+        <div class="goal-grid">
+          <div class="goal-card" style="border-color: #10b981;">
+            <h4>🥇 Collagen Production</h4>
+            <p><strong>STRONGEST EVIDENCE</strong></p>
+            <p>Multiple controlled trials show RLT at 633nm and 830nm increases collagen type I and III synthesis, with measurable improvements in skin density confirmed by ultrasound.</p>
+          </div>
+          <div class="goal-card" style="border-color: #22c55e;">
+            <h4>✨ Wrinkle Reduction</h4>
+            <p><strong>STRONG EVIDENCE</strong></p>
+            <p>2×/week protocol over 3 months consistently shows smoother skin texture, reduced surface roughness, and improved overall appearance.</p>
+          </div>
+          <div class="goal-card" style="border-color: #3b82f6;">
+            <h4>🩹 Wound Healing</h4>
+            <p><strong>STRONG EVIDENCE</strong></p>
+            <p>Accelerated wound closure and reduced scarring supported by both dermatology and surgical research. Early evidence base origin.</p>
+          </div>
+          <div class="goal-card" style="border-color: #f59e0b;">
+            <h4>🔴 Acne Treatment</h4>
+            <p><strong>MIXED EVIDENCE</strong></p>
+            <p>Reduces inflammatory component by lowering cytokine activity and bacterial load. Better for inflammatory than cystic/hormonal acne.</p>
+          </div>
+        </div>
+
+        <div class="key-difference" style="border-color: #ec4899; background: #4a0444; margin-top: 2rem;">
+          <p style="font-size: 1.2em; text-align: center; margin-bottom: 1rem;"><strong>Key Clinical Findings</strong></p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+            <div>
+              <p style="font-size: 2.5em; font-weight: 700; color: #f0abfc; margin: 0;">36%</p>
+              <p style="opacity: 0.9;">Reduction in wrinkle depth</p>
+            </div>
+            <div>
+              <p style="font-size: 2.5em; font-weight: 700; color: #f0abfc; margin: 0;">19%</p>
+              <p style="opacity: 0.9;">Improvement in skin elasticity</p>
+            </div>
+          </div>
+          <p style="font-size: 0.9em; text-align: center; margin-top: 1rem; opacity: 0.8;">Results verified through histological analysis, not just self-reporting</p>
+        </div>
+
+        <div class="key-difference" style="border-color: #f59e0b; background: #451a03; margin-top: 2rem;">
+          <p><strong>⚠️ Reality Check:</strong> Results require consistency and don't appear overnight — but they are reproducible. Clinical protocols used 2–3 sessions per week for 6–12 weeks minimum.</p>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <h2>Hair Growth — Emerging Evidence</h2>
+        <p>Several studies have shown RLT applied to the scalp can stimulate follicle activity in androgenetic alopecia, with measurable increases in hair count and density.</p>
+      </section>
+
+      <section class="category-section">
+        <h2>What the Research Doesn't Show</h2>
+        <div class="red-flags">
+          <div class="flag-item">
+            <div class="flag-number">1</div>
+            <div class="flag-content">
+              <h4>Not a Substitute</h4>
+              <p>RLT is not a substitute for sunscreen, retinoids, or clinical procedures for significant skin concerns.</p>
+            </div>
+          </div>
+          <div class="flag-item">
+            <div class="flag-number">2</div>
+            <div class="flag-content">
+              <h4>Works With Biology</h4>
+              <p>It amplifies natural repair processes rather than overriding them.</p>
+            </div>
+          </div>
+          <div class="flag-item">
+            <div class="flag-number">3</div>
+            <div class="flag-content">
+              <h4>Severe Cases Need Doctors</h4>
+              <p>Severe photoaging, deep scarring, or active skin conditions should be managed in consultation with a dermatologist.</p>
+            </div>
+          </div>
+          <div class="flag-item">
+            <div class="flag-number">4</div>
+            <div class="flag-content">
+              <h4>Consistency Required</h4>
+              <p>One-off or sporadic sessions produce minimal benefit — consistency is non-negotiable.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <h2>What Dermatologists Say</h2>
+        <p>The mainstream dermatology community has moved from skepticism to <strong>cautious endorsement:</strong></p>
+
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Institution</th>
+                <th>Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Stanford Medicine</strong></td>
+                <td>Acknowledged hundreds of supportive studies</td>
+              </tr>
+              <tr>
+                <td><strong>Cleveland Clinic</strong></td>
+                <td>Cites evidence for collagen stimulation</td>
+              </tr>
+              <tr>
+                <td><strong>American Academy of Dermatology</strong></td>
+                <td>Notes potential for aging signs and wound healing while calling for more large-scale RCTs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="goal-grid" style="margin-top: 2rem;">
+          <div class="goal-card" style="border-color: #10b981;">
+            <h4>✅ The Consensus</h4>
+            <ul style="margin: 0;">
+              <li>The mechanism is real</li>
+              <li>The benefits are real</li>
+              <li>The technology is safe</li>
+            </ul>
+          </div>
+          <div class="goal-card" style="border-color: #f59e0b;">
+            <h4>⚠️ The Caveat</h4>
+            <p>Consumer device quality varies enormously — device selection matters as much as protocol.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="category-section">
+        <h2>The Technical Specifications</h2>
+        <div class="comparison-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Wavelength</th>
+                <th>Target Depth</th>
+                <th>Primary Benefit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>633–660nm</strong></td>
+                <td>Surface (1-2mm)</td>
+                <td>Collagen synthesis, surface rejuvenation</td>
+              </tr>
+              <tr>
+                <td><strong>830–850nm</strong></td>
+                <td>Deep (5-10mm)</td>
+                <td>Elastin production, deep tissue repair</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <div class="final-rule">
+        <h3>The Bottom Line</h3>
+        <p>For skin health, red light therapy has one of the <strong>strongest evidence bases</strong> of any consumer wellness technology. The mechanism is real, the benefits are real, and the technology is safe. The key is choosing a quality device and being consistent with your protocol.</p>
+      </div>
+
+      <div class="cta-section">
+        <h3>Your Action Plan</h3>
+        <div class="protocol-steps">
+          <div class="protocol-step">
+            <span class="step-num">1</span>
+            <span class="step-text"><strong>Use 633–660nm</strong> for surface collagen and rejuvenation</span>
+          </div>
+          <div class="protocol-step">
+            <span class="step-num">2</span>
+            <span class="step-text"><strong>Use 830–850nm</strong> for deeper elastin and repair</span>
+          </div>
+          <div class="protocol-step">
+            <span class="step-num">3</span>
+            <span class="step-text"><strong>Expect results after 6–12 consistent weeks</strong></span>
+          </div>
+          <div class="protocol-step">
+            <span class="step-num">4</span>
+            <span class="step-text"><strong>Buy a device with verified irradiance</strong> at treatment distance</span>
+          </div>
+          <div class="protocol-step">
+            <span class="step-num">5</span>
+            <span class="step-text"><strong>Keep using it</strong> — maintenance is key</span>
+          </div>
+        </div>
+        <Link to="/products/red-light" class="cta-button" style="margin-top: 2rem;">Browse Red Light Devices</Link>
+      </div>
+    `
+  },
   'best-red-light-panels-2026': {
     id: 'best-red-light-panels-2026',
     title: 'Best Red Light Therapy Panels of 2026: Ranked & Reviewed',

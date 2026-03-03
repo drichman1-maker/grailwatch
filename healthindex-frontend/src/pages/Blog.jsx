@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const posts = [
+  { id: 'red-light-therapy-for-skin', title: 'Red Light Therapy for Skin: What the Research Actually Says', category: 'Education', date: 'Mar 3, 2026' },
   { id: 'best-red-light-panels-2026', title: 'Best Red Light Therapy Panels of 2026: Ranked & Reviewed', category: 'Buying Guide', date: 'Mar 3, 2026' },
   { id: 'theragun-vs-compression-boots', title: 'Theragun vs. Compression Boots: Which Recovery Tool Is Worth It?', category: 'Education', date: 'Mar 3, 2026' },
   { id: 'science-of-cold-exposure', title: 'The Science of Cold Exposure: What Happens to Your Body', category: 'Education', date: 'Mar 3, 2026' },
