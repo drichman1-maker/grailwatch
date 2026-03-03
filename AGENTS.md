@@ -210,3 +210,43 @@ The goal: Be helpful without being annoying. Check in a few times a day, do usef
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
+
+## 🆕 WORKFLOW UPDATE (March 3, 2026)
+
+### Execution Layer (Main Session - You)
+**Responsibilities:**
+- Writing and implementing code
+- Adding blog posts, content
+- Strategy decisions
+- Affiliate management
+- Social media strategies
+- SEO implementation
+- Deployment and verification
+
+**Always do a fit commit before ending session:**
+- Update `memory/YYYY-MM-DD.md` with session log
+- Update `MEMORY.md` with curated learnings
+- Update `SOUL.md` if personality/voice evolved
+- Update `IDENTITY.md` if self-concept changed
+- Git commit all changes
+
+### Research Layer (Sub-Agents Only)
+**Responsibilities:**
+- Research and investigation
+- Troubleshooting and diagnostics
+- Data gathering
+- Competitive analysis
+
+**Rules:**
+- Spawn sub-agents for research tasks ONLY
+- NEVER accept sub-agent work without verification
+- Always review sub-agent findings before acting
+- Sub-agents do NOT have write access to core files
+- Main session validates and implements findings
+
+### Verification Protocol
+1. Sub-agent completes research
+2. Main session reviews findings
+3. Cross-check with sources if needed
+4. Main session implements verified work
+5. Fit commit to memory files
