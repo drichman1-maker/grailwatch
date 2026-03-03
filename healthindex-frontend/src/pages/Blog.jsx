@@ -2,6 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const posts = [
+  { id: 'theragun-vs-compression-boots', title: 'Theragun vs. Compression Boots: Which Recovery Tool Is Worth It?', category: 'Education', date: 'Mar 3, 2026' },
+  { id: 'science-of-cold-exposure', title: 'The Science of Cold Exposure: What Happens to Your Body', category: 'Education', date: 'Mar 3, 2026' },
+  { id: 'red-light-muscle-recovery', title: 'Red Light Therapy for Muscle Recovery: Does It Work?', category: 'Education', date: 'Mar 3, 2026' },
+  { id: 'lymphatic-system-recovery-tech', title: 'How the Lymphatic System Works (And Why Recovery Tech Targets It)', category: 'Education', date: 'Mar 3, 2026' },
   { id: 'cryotherapy-chamber-buying-guide', title: 'Cryotherapy Chambers: A Buyer\'s Guide', category: 'Buying Guide', date: 'Feb 27, 2026' },
   { id: 'pemf-mat-buying-guide', title: 'PEMF Mat Buying Guide', category: 'Buying Guide', date: 'Feb 27, 2026' },
   { id: 'choose-right-red-light-device', title: 'How to Choose the Right Red Light Device', category: 'Buying Guide', date: 'Feb 26, 2026' },

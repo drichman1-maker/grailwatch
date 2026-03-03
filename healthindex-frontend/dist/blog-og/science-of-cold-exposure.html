@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0ea5e9 100%);
+      display: flex;
+      flex-direction: column;
+      padding: 60px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.4) 0%, transparent 70%);
+      bottom: -150px;
+      left: -150px;
+      border-radius: 50%;
+    }
+    .category {
+      display: inline-block;
+      padding: 8px 20px;
+      background: rgba(14, 165, 233, 0.2);
+      color: #0ea5e9;
+      border-radius: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+      width: fit-content;
+    }
+    .title {
+      font-size: 52px;
+      font-weight: 800;
+      color: #fafafa;
+      line-height: 1.2;
+      margin-bottom: 30px;
+      max-width: 900px;
+    }
+    .excerpt {
+      font-size: 28px;
+      color: #bae6fd;
+      line-height: 1.5;
+      max-width: 800px;
+      margin-bottom: 40px;
+    }
+    .footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+    }
+    .brand-text {
+      font-size: 32px;
+      font-weight: 700;
+      color: white;
+    }
+    .url {
+      font-size: 24px;
+      color: #6ee7b7;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="category">Education</div>
+  <h1 class="title">The Science of Cold Exposure</h1>
+  <p class="excerpt">What happens to your body during cold plunges and cryotherapy? A clear-eyed look at the physiology.</p>
+  <div class="footer">
+    <div class="brand">
+      <div class="brand-icon">💚</div>
+      <div class="brand-text">HealthIndex</div>
+    </div>
+    <div class="url">healthindex.app</div>
+  </div>
+</body>
+</html>
