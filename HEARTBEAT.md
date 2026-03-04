@@ -2,7 +2,8 @@
 
 ## Schedule
 - **Daily Report:** 10 PM EST (cron)
-- **Heartbeats:** Every 2 hours (8am–10pm EST)
+- **Heartbeats:** DISABLED outside 8am-10pm EST
+- Only run heartbeat checks between 8:00 AM and 10:00 PM America/New_York
 
 ## Reminders
 - **April 2, 2026:** Reapply B&H affiliate program

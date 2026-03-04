@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ArrowLeft, Calendar, Clock, BookOpen } from 'lucide-react'
+import { Helmet } from 'react-helmet-async'
 
 const blogPosts = {
   'red-light-therapy-for-skin': {
@@ -2445,6 +2446,20 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
+      <Helmet>
+        <title>{post.title} | HealthIndex</title>
+        <meta name="description" content={post.excerpt} />
+        <meta property="og:title" content={post.title} />
+        <meta property="og:description" content={post.excerpt} />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content={`${window.location.origin}/blog-og/${slug}.png`} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={post.title} />
+        <meta name="twitter:description" content={post.excerpt} />
+        <meta name="twitter:image" content={`${window.location.origin}/blog-og/${slug}.png`} />
+      </Helmet>
       <div className="max-w-[800px] mx-auto px-6 py-12">
         <Link
           to="/blog"
