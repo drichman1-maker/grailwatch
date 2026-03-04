@@ -1,0 +1,111 @@
+{
+  "archivedDate": "2026-03-03",
+  "reason": "Removed from Health Index per user request",
+  "products": [
+    {
+      "id": "clearlight-sauna-3person",
+      "name": "Clearlight Sanctuary 3 Person Full Spectrum Sauna",
+      "category": "sauna",
+      "brand": "Clearlight",
+      "image": "https://infraredsauna.com/wp-content/uploads/2025/06/1_CL_Sanct-3_QV_Hero_Mahogany-1024x1024.png",
+      "specs": {
+        "type": "Full Spectrum Infrared",
+        "capacity": "3 Person",
+        "dimensions": "64 x 44 x 76"
+      },
+      "prices": {
+        "clearlight": {
+          "price": 5895,
+          "inStock": true,
+          "url": "https://www.clearlightinfrared.com/sanctuary-3-person-full-spectrum-infrared-sauna/"
+        },
+        "amazon": { "price": null, "inStock": false },
+        "wayfair": { "price": null, "inStock": false }
+      }
+    },
+    {
+      "id": "jacuzzi-clearlight-premium",
+      "name": "Jacuzzi Clearlight Premier IS-5 Sauna",
+      "category": "sauna",
+      "brand": "Jacuzzi",
+      "image": "https://infraredsauna.com/wp-content/uploads/2025/06/1_CL_Premier_IS-1_Hero_Mahogany-1024x1024.png",
+      "specs": {
+        "type": "Full Spectrum Infrared",
+        "capacity": "4 Person",
+        "dimensions": "72 x 52 x 76"
+      },
+      "prices": {
+        "jacuzzi": {
+          "price": 8495,
+          "inStock": true,
+          "url": "https://www.jacuzzisaunas.com/premier-is-5/"
+        },
+        "amazon": { "price": null, "inStock": false }
+      }
+    },
+    {
+      "id": "clearlight-sanctuary-2",
+      "name": "Clearlight Sanctuary 2 Person Sauna",
+      "category": "sauna",
+      "brand": "Clearlight",
+      "image": "https://infraredsauna.com/wp-content/uploads/2025/06/3_CL_Sanct_2_QuaterView_Option-1-1024x1024.png",
+      "specs": {
+        "type": "Full Spectrum Infrared",
+        "capacity": "2 Person",
+        "features": "PureTech EMF Zero"
+      },
+      "prices": {
+        "clearlight": {
+          "price": 4995,
+          "inStock": true,
+          "url": "https://www.clearlightinfrared.com/sanctuary-2-person-infrared-sauna/"
+        },
+        "amazon": { "price": null, "inStock": false }
+      }
+    },
+    {
+      "id": "clearlight-therapuretic",
+      "name": "Clearlight Therapuretic Full Spectrum Sauna",
+      "category": "sauna",
+      "brand": "Clearlight",
+      "image": "https://infraredsauna.com/wp-content/uploads/2025/06/1_CL_Sanct-3_QV_Hero_Mahogany-1024x1024.png",
+      "specs": {
+        "type": "Full Spectrum Infrared",
+        "capacity": "1 Person",
+        "features": "Compass Control"
+      },
+      "prices": {
+        "clearlight": {
+          "price": 3295,
+          "inStock": true,
+          "url": "https://www.clearlightinfrared.com/therapuretic-1-person-infrared-sauna/"
+        },
+        "amazon": {
+          "price": 3499,
+          "inStock": true,
+          "url": "https://www.amazon.com/dp/B08CRZ2V6J"
+        }
+      }
+    },
+    {
+      "id": "clearlight-disclaimer-raj",
+      "name": "Clearlight Optional: Sanctuary Sauna with Range",
+      "category": "sauna",
+      "brand": "Clearlight",
+      "image": "https://infraredsauna.com/wp-content/uploads/2025/06/3_CL_Sanct_2_QuaterView_Option-1-1024x1024.png",
+      "specs": {
+        "type": "Full Spectrum Infrared",
+        "capacity": "2+ Person",
+        "features": "WiFi Control"
+      },
+      "prices": {
+        "clearlight": {
+          "price": 5995,
+          "inStock": true,
+          "url": "https://www.clearlightinfrared.com/sanctuary-2-person-full-spectrum-infrared-sauna/"
+        },
+        "amazon": { "price": null, "inStock": false }
+      }
+    }
+  ]
+}

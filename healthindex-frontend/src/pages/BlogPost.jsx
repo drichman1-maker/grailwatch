@@ -218,7 +218,7 @@ const blogPosts = {
             <span class="step-text"><strong>Keep using it</strong> — maintenance is key</span>
           </div>
         </div>
-        <Link to="/products/red-light" class="cta-button" style="margin-top: 2rem;">Browse Red Light Devices</Link>
+        <a href="/products/red-light" class="cta-button" style="margin-top: 2rem;">Browse Red Light Devices</a>
       </div>
     `
   },
@@ -389,7 +389,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Compare Red Light Panels</h3>
         <p>Browse our curated selection of red light therapy devices with verified specs.</p>
-        <Link to="/products/red-light" class="cta-button">Browse Red Light Therapy</Link>
+        <a href="/products/red-light" class="cta-button">Browse Red Light Therapy</a>
       </div>
     `
   },
@@ -475,7 +475,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Compare Recovery Tools</h3>
         <p>Browse percussion devices and compression systems to find the right fit for your routine.</p>
-        <Link to="/products" class="cta-button">Browse Recovery Equipment</Link>
+        <a href="/products" class="cta-button">Browse Recovery Equipment</a>
       </div>
     `
   },
@@ -620,7 +620,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Explore Cold Therapy Options</h3>
         <p>Compare cold plunges, cryotherapy chambers, and ice baths to find the right cold exposure method for your routine.</p>
-        <Link to="/products/cryotherapy" class="cta-button">Browse Cryotherapy</Link>
+        <a href="/products/cryotherapy" class="cta-button">Browse Cryotherapy</a>
       </div>
     `
   },
@@ -797,7 +797,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Compare Red Light Devices</h3>
         <p>Browse panels and devices with verified specs for muscle recovery.</p>
-        <Link to="/products/red-light" class="cta-button">Browse Red Light Therapy</Link>
+        <a href="/products/red-light" class="cta-button">Browse Red Light Therapy</a>
       </div>
     `
   },
@@ -979,7 +979,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Support Your Lymphatic System</h3>
         <p>Explore compression boots, massage tools, and other recovery tech designed to optimize lymphatic flow.</p>
-        <Link to="/products/compression" class="cta-button">Browse Recovery Tech</Link>
+        <a href="/products/compression" class="cta-button">Browse Recovery Tech</a>
       </div>
     `
   },
@@ -1265,7 +1265,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Ready to Explore Cryotherapy?</h3>
         <p>Compare cryotherapy chambers and related recovery equipment to find the right fit for your needs.</p>
-        <Link to="/products" class="cta-button">Browse Cryotherapy Equipment</Link>
+        <a href="/products" class="cta-button">Browse Cryotherapy Equipment</a>
       </div>
     `
   },
@@ -1505,7 +1505,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Ready to Compare PEMF Mats?</h3>
         <p>Browse our curated selection of PEMF therapy mats with verified specs.</p>
-        <Link to="/products" class="cta-button">Browse PEMF Mats</Link>
+        <a href="/products" class="cta-button">Browse PEMF Mats</a>
       </div>
     `
   },
@@ -1704,7 +1704,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Ready to Compare Devices?</h3>
         <p>Browse our curated selection of red light therapy devices with verified specs.</p>
-        <Link to="/products/red-light" class="cta-button">Browse Red Light Devices</Link>
+        <a href="/products/red-light" class="cta-button">Browse Red Light Devices</a>
       </div>
     `
   },
@@ -1904,7 +1904,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Ready to Explore Your Options?</h3>
         <p>Compare prices on red light therapy devices and infrared saunas to find the right fit for your goals.</p>
-        <Link to="/" class="cta-button">Browse Products</Link>
+        <a href="/" class="cta-button">Browse Products</a>
       </div>
     `
   },
@@ -1950,7 +1950,7 @@ const blogPosts = {
           </div>
         </div>
 
-        <p><strong>What's new in 2026</strong> is the hybrid unit revolution. Brands like Sunlighten, Clearlight, and HigherDose are now building full-spectrum infrared cabins with integrated red light therapy panels, combining two powerful modalities in a single session.</p>
+        <p><strong>What's new in 2026</strong> is the hybrid unit revolution. Brands like Sunlighten, Sun Home Saunas, and HigherDose are now building full-spectrum infrared cabins with integrated red light therapy panels, combining two powerful modalities in a single session.</p>
 
         <div class="progress-section">
           <div class="progress-item">
@@ -2124,7 +2124,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Ready to Build Your Home Wellness Setup?</h3>
         <p>Start with one modality that aligns with your primary health goals, then expand your protocol as you experience the benefits.</p>
-        <Link to="/" class="cta-button">Explore Products →</Link>
+        <a href="/" class="cta-button">Explore Products →</a>
       </div>
     `
   },
@@ -2420,7 +2420,7 @@ const blogPosts = {
       <div class="cta-section">
         <h3>Ready to Compare Compression Systems?</h3>
         <p>Browse our curated selection of compression therapy devices with verified specs.</p>
-        <Link to="/products" class="cta-button">Browse Compression Systems</Link>
+        <a href="/products" class="cta-button">Browse Compression Systems</a>
       </div>
     `
   }
