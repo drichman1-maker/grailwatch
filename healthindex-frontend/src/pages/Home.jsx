@@ -94,18 +94,18 @@ const Home = () => {
         </div>
 
         {/* Stats */}
-        <div className="flex items-center justify-center gap-16">
+        <div className="flex items-center justify-center gap-10">
           <div className="text-center">
-            <div className="text-3xl font-bold text-[#fafafa]">11+</div>
-            <div className="text-sm text-[#a3a3a3]">Products</div>
+            <div className="text-3xl font-bold text-[#fafafa] leading-tight">11+</div>
+            <div className="text-sm text-[#a3a3a3] mt-0.5">Products</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-[#fafafa]">6</div>
-            <div className="text-sm text-[#a3a3a3]">Categories</div>
+            <div className="text-3xl font-bold text-[#fafafa] leading-tight">6</div>
+            <div className="text-sm text-[#a3a3a3] mt-0.5">Categories</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl font-bold text-[#fafafa]">24/7</div>
-            <div className="text-sm text-[#a3a3a3]">Monitoring</div>
+            <div className="text-3xl font-bold text-[#fafafa] leading-tight">24/7</div>
+            <div className="text-sm text-[#a3a3a3] mt-0.5">Monitoring</div>
           </div>
         </div>
       </section>
