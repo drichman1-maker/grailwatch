@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Search, Heart, ArrowRight, Activity } from 'lucide-react'
+import { Search, Heart, ArrowRight, Activity, Flame, Droplets, Snowflake, Lightbulb, Zap, Activity as ActivityIcon } from 'lucide-react'
 import { getProducts } from '../api'
 
 const Home = () => {
@@ -46,12 +46,12 @@ const Home = () => {
   }
 
   const categories = [
-    { name: 'Saunas', path: '/products/sauna', icon: '🔥', count: 'Infrared & Traditional' },
-    { name: 'Hyperbaric', path: '/products/hyperbaric', icon: '🫧', count: 'Oxygen Therapy' },
-    { name: 'Cryotherapy', path: '/products/cryotherapy', icon: '❄️', count: 'Cold Therapy' },
-    { name: 'Red Light', path: '/products/red-light', icon: '💡', count: 'Light Therapy' },
-    { name: 'Compression', path: '/products/compression', icon: '🦵', count: 'Recovery Boots' },
-    { name: 'PEMF', path: '/products/pemf', icon: '⚡', count: 'EMF Therapy' },
+    { name: 'Saunas', path: '/products/sauna', icon: Flame, count: 'Infrared & Traditional' },
+    { name: 'Hyperbaric', path: '/products/hyperbaric', icon: Droplets, count: 'Oxygen Therapy' },
+    { name: 'Cryotherapy', path: '/products/cryotherapy', icon: Snowflake, count: 'Cold Therapy' },
+    { name: 'Red Light', path: '/products/red-light', icon: Lightbulb, count: 'Light Therapy' },
+    { name: 'Compression', path: '/products/compression', icon: ActivityIcon, count: 'Recovery Boots' },
+    { name: 'PEMF', path: '/products/pemf', icon: Zap, count: 'EMF Therapy' },
   ]
 
   return (
@@ -120,7 +120,7 @@ const Home = () => {
               to={cat.path}
               className="group bg-[#141414] border border-[#262626] rounded-xl p-6 hover:bg-[#1a1a1a] hover:border-emerald-500/50 transition-all text-center"
             >
-              <div className="text-4xl mb-3">{cat.icon}</div>
+              <div className="mb-3"><cat.icon className="w-8 h-8 mx-auto text-emerald-400" /></div>
               <h3 className="font-medium text-[#fafafa] group-hover:text-emerald-400 transition-colors">
                 {cat.name}
               </h3>
@@ -128,36 +128,6 @@ const Home = () => {
             </Link>
           ))}
         </div>
-      </section>
-
-      {/* Featured Partner - America Cryo */}
-      <section className="max-w-[1200px] mx-auto px-6 py-8">
-        <a 
-          href="https://vip.americacryo.com/?aff=311" 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className="block bg-gradient-to-r from-emerald-900/40 to-cyan-900/40 border border-emerald-500/30 rounded-2xl p-6 hover:border-emerald-500/50 transition-all group"
-        >
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center text-2xl">
-                ❄️
-              </div>
-              <div>
-                <p className="text-xs text-emerald-400 uppercase tracking-wider mb-1">Featured Partner</p>
-                <h3 className="text-xl font-semibold text-[#fafafa] group-hover:text-emerald-400 transition-colors">
-                  America Cryo
-                </h3>
-                <p className="text-sm text-[#a3a3a3]">
-                  Professional cryotherapy chambers for home and commercial use
-                </p>
-              </div>
-            </div>
-            <span className="text-emerald-400 text-sm font-medium flex items-center gap-1">
-              Visit Store <ArrowRight className="w-4 h-4" />
-            </span>
-          </div>
-        </a>
       </section>
 
       {/* Featured Products Section */}
