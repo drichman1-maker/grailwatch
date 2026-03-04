@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { ChevronRight, Filter } from 'lucide-react'
+import { ChevronRight, Filter, Search, X } from 'lucide-react'
 import { getProducts, getCategories } from '../api'
 
 const Products = () => {
@@ -9,6 +9,7 @@ const Products = () => {
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [activeFilter, setActiveFilter] = useState(category || 'All')
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     fetchCategories()
@@ -54,9 +55,14 @@ const Products = () => {
     }).format(price || 0)
   }
 
-  const filteredProducts = activeFilter === 'All' 
-    ? products 
-    : products.filter(p => p.category === activeFilter)
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = activeFilter === 'All' || p.category === activeFilter
+    const matchesSearch = searchQuery === '' || 
+      p.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.category?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      p.brand?.toLowerCase().includes(searchQuery.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
 
   const categoryLabels = {
     'sauna': 'Saunas',
@@ -84,9 +90,29 @@ const Products = () => {
         </div>
 
         {/* Title */}
-        <h1 className="text-3xl md:text-4xl font-bold text-[#fafafa] mb-8">
+        <h1 className="text-3xl md:text-4xl font-bold text-[#fafafa] mb-6">
           {activeFilter === 'All' ? 'All Products' : categoryLabels[activeFilter] || activeFilter}
         </h1>
+
+        {/* Search Bar */}
+        <div className="relative max-w-md mb-6">
+          <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-[#a3a3a3] w-5 h-5" />
+          <input
+            type="text"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-12 pr-10 py-3 bg-[#141414] border border-[#262626] rounded-xl text-[#fafafa] placeholder-[#525252] focus:border-emerald-500 focus:outline-none transition-colors"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#a3a3a3] hover:text-[#fafafa]"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          )}
+        </div>
 
         {/* Filters */}
         <div className="flex flex-wrap items-center gap-2 mb-8">
@@ -101,22 +127,28 @@ const Products = () => {
           >
             All
           </button>
-          {categories.map((cat) => (
+          {categories.map(cat => (
             <button
-              key={cat}
-              onClick={() => setActiveFilter(cat)}
+              key={cat.id}
+              onClick={() => setActiveFilter(cat.id)}
               className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                activeFilter === cat
+                activeFilter === cat.id
                   ? 'bg-emerald-500 text-white'
                   : 'bg-[#141414] text-[#a3a3a3] hover:text-[#fafafa] border border-[#262626]'
               }`}
             >
-              {categoryLabels[cat] || cat}
+              {cat.name}
             </button>
           ))}
         </div>
 
-        {/* Products Grid */}
+        {/* Results Count */}
+        <p className="text-[#a3a3a3] mb-6">
+          Showing {filteredProducts.length} product{filteredProducts.length !== 1 ? 's' : ''}
+          {searchQuery && ` matching "${searchQuery}"`}
+        </p>
+
+        {/* Product Grid */}
         {loading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
@@ -127,101 +159,66 @@ const Products = () => {
               </div>
             ))}
           </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="text-center py-16">
+            <p className="text-[#a3a3a3] text-lg">No products found</p>
+            {searchQuery && (
+              <button
+                onClick={() => {setSearchQuery(''); setActiveFilter('All')}}
+                className="mt-4 text-emerald-400 hover:text-emerald-300"
+              >
+                Clear filters
+              </button>
+            )}
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProducts.map((product) => {
+            {filteredProducts.map(product => {
               const bestPrice = getBestPrice(product)
-              const allPrices = product.prices ? Object.values(product.prices) : []
-              const anyInStock = allPrices.some(p => p.inStock && p.price)
-              const inStockCount = allPrices.filter(p => p.inStock && p.price).length
-              const stockStatus = !anyInStock ? 'out' : inStockCount === 1 ? 'limited' : 'in-stock'
               return (
-                <div
+                <Link
                   key={product.id}
-                  className="group bg-[#141414] border border-[#262626] rounded-2xl overflow-hidden hover:bg-[#1a1a1a] hover:border-emerald-500/50 transition-all flex flex-col"
+                  to={`/product/${product.id}`}
+                  className="group bg-[#141414] border border-[#262626] rounded-2xl overflow-hidden hover:bg-[#1a1a1a] hover:border-emerald-500/50 transition-all"
                 >
                   {/* Product Image */}
-                  <Link to={`/product/${product.id}`} className="block">
-                    <div className="h-48 overflow-hidden bg-[#0a0a0a] relative">
-                      <img
-                        src={product.image || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80'}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      {/* Stock badge overlay */}
-                      <div className={`absolute top-3 left-3 px-2 py-1 rounded text-xs font-semibold ${
-                        stockStatus === 'out' ? 'bg-red-500/90 text-white' :
-                        stockStatus === 'limited' ? 'bg-orange-500/90 text-white' :
-                        'bg-emerald-500/90 text-white'
-                      }`}>
-                        {stockStatus === 'out' ? 'OUT OF STOCK' : stockStatus === 'limited' ? 'LIMITED' : 'IN STOCK'}
-                      </div>
-                    </div>
-                  </Link>
-                  <div className="p-6 flex flex-col flex-1">
+                  <div className="h-48 overflow-hidden bg-[#0a0a0a]">
+                    <img
+                      src={product.image || 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80'}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6">
                     <div className="flex items-start justify-between mb-3">
                       <span className="inline-block px-2 py-1 rounded text-xs font-medium uppercase tracking-wider bg-emerald-500/20 text-emerald-400">
                         {product.category}
                       </span>
-                      <span className="text-xs text-[#a3a3a3] capitalize">{product.brand}</span>
+                      <span className="text-sm text-[#a3a3a3] capitalize">{bestPrice?.retailer}</span>
                     </div>
-                    <Link to={`/product/${product.id}`}>
-                      <h3 className="text-xl font-semibold text-[#fafafa] mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
-                        {product.name}
-                      </h3>
-                    </Link>
-                    {product.specs && (
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {Object.entries(product.specs).slice(0, 3).map(([key, value]) => (
-                          <span key={key} className="text-xs px-2 py-1 bg-[#0a0a0a] border border-[#262626] rounded text-[#a3a3a3]">
-                            {value}
-                          </span>
-                        ))}
-                      </div>
+                    <h3 className="text-xl font-semibold text-[#fafafa] mb-1 group-hover:text-emerald-400 transition-colors line-clamp-2">
+                      {product.name}
+                    </h3>
+                    {product.brand && (
+                      <p className="text-[#a3a3a3] text-sm mb-3 capitalize">{product.brand}</p>
                     )}
-                    <div className="mt-auto">
-                      <div className="flex items-end justify-between mb-4">
-                        <div>
-                          <p className="text-xs text-[#a3a3a3] uppercase tracking-wider mb-1">Best Price</p>
-                          <p className="text-2xl font-bold text-[#fafafa]">
-                            {formatPrice(bestPrice?.price)}
-                          </p>
-                        </div>
-                        {bestPrice?.price && (
-                          <span className="text-sm text-emerald-400">
-                            from {bestPrice.retailer}
-                          </span>
-                        )}
+                    {product.specs && (
+                      <p className="text-[#a3a3a3] text-sm mb-3">
+                        {Object.values(product.specs).slice(0, 2).join(' • ')}
+                      </p>
+                    )}
+                    <div className="flex items-end justify-between">
+                      <div>
+                        <p className="text-xs text-[#a3a3a3] uppercase tracking-wider mb-1">Best Price</p>
+                        <p className="text-2xl font-bold text-[#fafafa]">
+                          {formatPrice(bestPrice?.price)}
+                        </p>
                       </div>
-                      {bestPrice?.url ? (
-                        <a
-                          href={bestPrice.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block w-full py-3 bg-emerald-500 text-white text-center text-sm font-medium rounded-xl hover:bg-emerald-600 transition-colors"
-                          onClick={e => e.stopPropagation()}
-                        >
-                          View Deal →
-                        </a>
-                      ) : (
-                        <Link
-                          to={`/product/${product.id}`}
-                          className="block w-full py-3 bg-[#262626] text-[#a3a3a3] text-center text-sm font-medium rounded-xl hover:bg-[#333] transition-colors"
-                        >
-                          View Details
-                        </Link>
-                      )}
                     </div>
                   </div>
-                </div>
+                </Link>
               )
             })}
-          </div>
-        )}
-
-        {!loading && filteredProducts.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-[#a3a3a3]">No products found in this category.</p>
           </div>
         )}
       </div>
