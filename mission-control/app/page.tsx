@@ -69,10 +69,10 @@ const fallbackProjects = [
 ];
 
 const fallbackAffiliates = [
-  { id: '1', brand: 'Amazon', status: 'approved', commission: '~4%', notes: 'Active', url: 'https://affiliate-program.amazon.com' },
-  { id: '2', brand: 'eBay', status: 'approved', commission: '~4%', notes: 'Active', url: 'https://partnernetwork.ebay.com' },
-  { id: '3', brand: 'America Cryo', status: 'approved', commission: '~8%', notes: 'aff=311', url: 'https://americacryo.com' },
-  { id: '4', brand: 'Skimlinks', status: 'pending', commission: 'TBD', notes: 'HIGH PRIORITY - Apply now', url: 'https://skimlinks.com' },
+  { id: '1', brand: 'Amazon', category: 'General', status: 'approved', status_color: 'bg-emerald-500', commission: '~4%', updated_at: new Date().toISOString() },
+  { id: '2', brand: 'eBay', category: 'General', status: 'approved', status_color: 'bg-emerald-500', commission: '~4%', updated_at: new Date().toISOString() },
+  { id: '3', brand: 'America Cryo', category: 'Health', status: 'approved', status_color: 'bg-emerald-500', commission: '~8%', updated_at: new Date().toISOString() },
+  { id: '4', brand: 'Skimlinks', category: 'Network', status: 'pending', status_color: 'bg-amber-500', commission: 'TBD', updated_at: new Date().toISOString() },
 ];
 
 const fallbackTasks = [
