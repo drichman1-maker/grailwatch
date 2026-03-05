@@ -1,8 +1,1 @@
-{
-  "version": 2,
-  "framework": null,
-  "buildCommand": "npm run build",
-  "outputDirectory": "out",
-  "cleanUrls": true,
-  "trailingSlash": false
-}
+{"version": 2, "buildCommand": "cd mission-control && npm run build", "outputDirectory": "mission-control/out", "installCommand": "cd mission-control && npm install"}
