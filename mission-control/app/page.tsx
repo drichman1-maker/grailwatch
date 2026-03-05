@@ -60,15 +60,47 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+// Fallback data for static export
+const fallbackProjects = [
+  { id: '1', name: 'BabyGear', status: 'PRIORITY', status_color: 'bg-red-500', description: 'Baby product aggregator', domain: 'babygear-next.vercel.app', short_desc: 'Baby products', codebase_path: 'babygear-next/', deployed_url: 'https://babygear-next.vercel.app', local_path: '~/.openclaw/workspace/babygear-next/', stack: 'Next.js', tier: '1', updated_at: new Date().toISOString() },
+  { id: '2', name: 'Health Index', status: 'PRIORITY', status_color: 'bg-red-500', description: 'Wellness products aggregator', domain: 'healthindex.app', short_desc: 'Wellness products', codebase_path: 'healthindex-frontend/', deployed_url: 'https://healthindex.app', local_path: '~/.openclaw/workspace/healthindex-frontend/', stack: 'Next.js', tier: '1', updated_at: new Date().toISOString() },
+  { id: '3', name: 'GPU Drip', status: 'ITERATE', status_color: 'bg-blue-500', description: 'GPU deals aggregator', domain: 'gpudrip-static.vercel.app', short_desc: 'GPU deals', codebase_path: 'gpudrip-static/', deployed_url: 'https://gpudrip-static.vercel.app', local_path: '~/.openclaw/workspace/gpudrip-static/', stack: 'Next.js static', tier: '2', updated_at: new Date().toISOString() },
+  { id: '4', name: 'Mactrackr', status: 'ITERATE', status_color: 'bg-blue-500', description: 'Apple price tracking', domain: 'mactrackr.app', short_desc: 'Apple tracking', codebase_path: 'mactrackr-frontend/', deployed_url: 'https://mactrackr.app', local_path: '~/.openclaw/workspace/mactrackr-frontend/', stack: 'Vite + React', tier: '2', updated_at: new Date().toISOString() },
+];
+
+const fallbackAffiliates = [
+  { id: '1', brand: 'Amazon', status: 'approved', commission: '~4%', notes: 'Active', url: 'https://affiliate-program.amazon.com' },
+  { id: '2', brand: 'eBay', status: 'approved', commission: '~4%', notes: 'Active', url: 'https://partnernetwork.ebay.com' },
+  { id: '3', brand: 'America Cryo', status: 'approved', commission: '~8%', notes: 'aff=311', url: 'https://americacryo.com' },
+  { id: '4', brand: 'Skimlinks', status: 'pending', commission: 'TBD', notes: 'HIGH PRIORITY - Apply now', url: 'https://skimlinks.com' },
+];
+
+const fallbackTasks = [
+  { id: '1', title: 'Fix GPU Drip brand toggle bug', project: 'GPU Drip', status: 'todo', assignee_initials: 'DR', priority: 'critical' },
+  { id: '2', title: 'Complete 8 blog posts for GPU Drip', project: 'GPU Drip', status: 'in-progress', assignee_initials: 'DR', priority: 'high' },
+  { id: '3', title: 'Remove alert banners from Health Index', project: 'Health Index', status: 'todo', assignee_initials: 'DR', priority: 'high' },
+  { id: '4', title: 'Add air filtration category page', project: 'Health Index', status: 'todo', assignee_initials: 'DR', priority: 'medium' },
+];
+
   const fetchData = async () => {
-    const [projectsRes, tasksRes, affiliatesRes] = await Promise.all([
-      supabase.from('projects').select('*').order('name'),
-      supabase.from('tasks').select('*').order('created_at', { ascending: false }),
-      supabase.from('affiliates').select('*').order('brand')
-    ]);
-    if (projectsRes.data) setProjects(projectsRes.data);
-    if (tasksRes.data) setTasks(tasksRes.data);
-    if (affiliatesRes.data) setAffiliates(affiliatesRes.data);
+    try {
+      const [projectsRes, tasksRes, affiliatesRes] = await Promise.all([
+        supabase.from('projects').select('*').order('name'),
+        supabase.from('tasks').select('*').order('created_at', { ascending: false }),
+        supabase.from('affiliates').select('*').order('brand')
+      ]);
+      
+      // Use Supabase data if available, otherwise use fallback
+      setProjects(projectsRes.data || fallbackProjects);
+      setTasks(tasksRes.data || fallbackTasks);
+      setAffiliates(affiliatesRes.data || fallbackAffiliates);
+    } catch (error) {
+      console.error('Supabase fetch failed:', error);
+      // Use fallback data on any error
+      setProjects(fallbackProjects);
+      setTasks(fallbackTasks);
+      setAffiliates(fallbackAffiliates);
+    }
     setLoading(false);
   };
 
