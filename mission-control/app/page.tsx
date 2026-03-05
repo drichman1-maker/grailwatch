@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { supabase, Project, Task, Affiliate } from './lib/supabase';
+import { AffiliateTracker } from './components/AffiliateTracker';
+import { QuickActions } from './components/QuickActions';
 
 // Status color mapping
 const getStatusColor = (status: string) => {
@@ -76,12 +78,6 @@ export default function Home() {
   const planningProjects = projects.filter(p => p.status === 'PLANNING');
   const todoTasks = tasks.filter(t => t.status === 'todo');
   const inProgressTasks = tasks.filter(t => t.status === 'in-progress');
-
-  const affiliateStats = [
-    { label: 'Approved', value: affiliates.filter(a => a.status?.includes('Approved') || a.status?.includes('Ready')).length, color: 'text-emerald-400' },
-    { label: 'Pending', value: affiliates.filter(a => a.status?.includes('Applied')).length, color: 'text-amber-400' },
-    { label: 'To Apply', value: affiliates.filter(a => a.status?.includes('Apply')).length, color: 'text-[#5e6ad2]' },
-  ];
 
   if (loading) return <div className="min-h-screen bg-[#0c0c0c] text-white p-8">Loading...</div>;
 
@@ -164,8 +160,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Calendar + Affiliates Row */}
-        <div className="grid md:grid-cols-2 gap-4">
+        {/* Quick Actions + Calendar + Affiliates Row */}
+        <div className="grid md:grid-cols-3 gap-4">
+          {/* Quick Actions */}
+          <QuickActions />
+
           {/* Calendar */}
           <div className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl overflow-hidden">
             <div className="px-4 py-3 border-b border-[#2d2d2d] flex items-center gap-2">
@@ -189,29 +188,8 @@ export default function Home() {
             <div className="px-4 pb-3 text-xs text-[#5e6ad2]">Apr 2: Apple/B&H deadline</div>
           </div>
 
-          {/* Affiliates */}
-          <div className="bg-[#1a1a1a] border border-[#2d2d2d] rounded-xl overflow-hidden">
-            <div className="px-4 py-3 border-b border-[#2d2d2d] flex items-center gap-2">
-              <span className="text-base">💰</span>
-              <h2 className="text-sm font-semibold text-[#f5f5f5]">Affiliates</h2>
-            </div>
-            <div className="p-3 grid grid-cols-3 gap-2">
-              {affiliateStats.map(stat => (
-                <div key={stat.label} className="text-center">
-                  <div className={`text-xl font-bold ${stat.color}`}>{stat.value}</div>
-                  <div className="text-[10px] text-[#5a5a5a]">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-            <div className="px-4 pb-3 space-y-1">
-              {affiliates.slice(0, 4).map(aff => (
-                <div key={aff.id} className="flex items-center justify-between text-xs">
-                  <span className="text-[#f5f5f5]">{aff.brand}</span>
-                  <span className={`px-2 py-0.5 rounded text-white ${aff.status_color}`}>{aff.status}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          {/* Affiliate Tracker */}
+          <AffiliateTracker affiliates={affiliates} />
         </div>
 
         {/* My Tasks */}

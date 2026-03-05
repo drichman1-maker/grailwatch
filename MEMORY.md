@@ -1,21 +1,170 @@
-# MEMORY.md - Long-term Memory
+# MEMORY.md — Semantic Search (bulk knowledge)
 
-## Files
-- **Affiliate Tracker:** `affiliates.md` - All affiliate statuses and action items
-- **Mac Mini Setup:** `macmini-setup.md` - Server setup checklist
+## Dashboard Requirements (Mission Control)
+**Status:** Building — needs major overhaul
+**Goal:** Single source of truth for all projects
 
-## Project Locations
-- **Mactrackr:** `mactrackr-frontend/` - Vite + React price tracker
-- **Health Index:** `healthindex-frontend/` - Next.js wellness aggregator (moved from `grailwatch/web-next/` on 2026-03-03)
-- **Grailwatch:** `grailwatch/` - Original repo, now archived/legacy
+### Critical Needs
+- **Project Index:** Codebase locations, deployed URLs, live status
+- **Priorities Queue:** What's next, what's blocked
+- **Agent Status:** What Lavish is working on, active subagents
+- **Project Pages:** Individual project deep-dives with current codebase state
+- **Cron Jobs Page:** All scheduled tasks visible
+- **Calendar/Schedule:** Deadlines with cron jobs overlaid
 
-## Health Index
-- **Affiliate links needed:** Sunlighten, Joovv, and other brands (6-10% commission)
-- **NEW:** America Cryo VIP affiliate approved! (waiting on Affiliately setup)
-- **NEW:** Joovv applied 2026-03-03
-- **NEW:** Four Sigmatic applied 2026-03-03
+### Current Pain Point
+OpenClaw files are unorganized and bloated. Need cleaner tracking system.
 
-## Mactrackr
-- **CRITICAL:** Always commit and push blog changes! 4 articles were written locally but never deployed (took 3 days to debug)
-- **Fix:** `git add -A && git commit -m "msg" && git push origin main`
-- **Search feature:** Needs search bar (same for Health Index)
+---
+
+## Project Priority Matrix (Updated 2026-03-05)
+
+### Tier 1: Focus Verticals
+| Project | Path | Stack | Domain | Status | Priority |
+|---------|------|-------|--------|--------|----------|
+| **BabyGear** | `babygear-next/` | Next.js | babygear-next.vercel.app | Active | 🔥 HIGH |
+| **Health Index** | `healthindex-frontend/` | Next.js | healthindex.app | Active | 🔥 HIGH |
+
+### Tier 2: Maintain & Expand
+| Project | Path | Stack | Domain | Status | Issues |
+|---------|------|-------|--------|--------|--------|
+| **Mactrackr** | `mactrackr-frontend/` | Vite + React | mactrackr.app | Active | Price history needed |
+| **GPU Drip** | `gpudrip-static/` | Next.js static | gpudrip-static.vercel.app | **BROKEN** | Brand toggle bug, 8 incomplete blog posts |
+
+### Tier 3: Collectibles (Queue for later)
+- `mintcondition/` — Trading cards
+- `slugger/` — Baseball memorabilia
+- `rumbledeals/` — Wrestling
+- `coincurator/` — Coins
+- `grailwatch/` — Comics (archived, can revive)
+- **Robot Atlas** — New idea, not started
+
+---
+
+## GPU Drip — CRITICAL STATUS
+
+### Blockers (Fix Immediately)
+- [ ] Latest edits not showing in production
+- [ ] Brand toggle still broken
+- [ ] **8 blog posts incomplete** — need full articles written
+
+### Expansion Ideas
+- Add retailers: ExtremeTech, Tom's Hardware, PCMag
+- Multi-retailer price comparison
+- Consider scraping automation (see Tools section)
+
+---
+
+## Health Index — Next Steps
+
+### Remove
+- [ ] Get rid of alert banners/notifications
+
+### Add Pages
+- [ ] Air filtration systems category
+- [ ] Red light therapy mask accessories
+- [ ] Additional wellness product verticals
+
+---
+
+## BabyGear — Strategic Focus
+
+**Decision:** Shift primary focus here alongside Health Index
+
+### Outreach Strategy
+- **Primary:** Facebook (parent groups, buy/sell communities)
+- **Secondary:** Instagram (visual products)
+
+---
+
+## Mactrackr — Maintenance Mode
+
+### Outreach
+- Reddit (r/apple, r/mac)
+- Instagram
+- Twitter/X
+
+---
+
+## Collectibles Verticals — Future Queue
+
+Work on these together as a batch:
+- mintcondition (cards)
+- slugger (baseball)
+- rumbledeals (wrestling)
+- coincurator (coins)
+- grailwatch revival (comics)
+- robot atlas (new)
+
+### Outreach
+- Reddit (specialized communities)
+
+---
+
+## Tools & Automation
+
+### Scraping
+**Scrapling:** https://github.com/D4Vinci/Scrapling
+- Robust anti-bot bypass
+- Use cases: GPU Drip (retailer prices), Health Index (wellness products), Mactrackr (Apple prices)
+- **Action:** Set up as skill for price tracking
+
+**Pinchtab:** https://github.com/pinchtab/pinchtab  
+- Need to evaluate usefulness
+- Add to task queue after examination
+
+### Cron Jobs Needed
+1. **Twitter monitoring** — Track OpenClaw features/updates that benefit us
+2. **Price scraping** — Automated price tracking (once Scrapling skill ready)
+3. **Affiliate check** — Daily status on pending applications
+
+---
+
+## Affiliates (Unchanged)
+**Approved:** Amazon (~4%), eBay (~4%), America Cryo (aff=311, ~8%)
+
+**Pending:** Skimlinks (HIGH), Sunlighten, Joovv, Four Sigmatic
+
+**To Apply:** NVIDIA, Best Buy, Hyperice, Theragun
+
+**Deadline:** Apr 2 — Apple/B&H
+
+---
+
+## Codebase Locations
+All projects in `~/.openclaw/workspace/`:
+- `mactrackr-frontend/` — Tier 2
+- `healthindex-frontend/` — **Tier 1**
+- `gpudrip-static/` — Tier 2 (broken)
+- `babygear-next/` — **Tier 1**
+- `slugger/` — Tier 3
+- `coincurator/` — Tier 3
+- `mintcondition/` — Tier 3
+- `rumbledeals/` — Tier 3
+- `grailwatch/` — Tier 3 (archived)
+- `mission-control/` — Dashboard (building)
+
+---
+
+## Deployment Commands
+```bash
+git add -A
+git commit -m "message"
+git push origin clean-deploy-2
+vercel --prod
+```
+
+---
+
+## Critical Lessons (Preserved)
+**Always commit and push:** 4 articles written locally but never deployed (3 days to debug)
+
+**Token Optimization:**
+- Bootstrap files (AGENTS.md) load every time — keep lean
+- MEMORY.md searchable — put bulk knowledge here
+n- Reduce token spend by 70%
+
+## Sub-agent Management
+**Kill talker session:** `openclaw sessions kill --agent talker`
+**List sessions:** `openclaw sessions list`
+**Kill specific:** `openclaw sessions kill <id>`

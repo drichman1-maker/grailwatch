@@ -1,799 +1,601 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Doug's Sites | Dashboard</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: #0a0a0a;
-      color: #fafafa;
-      min-height: 100vh;
-    }
-    
-    .container {
-      display: flex;
-      min-height: 100vh;
-    }
-    
-    /* Sidebar */
-    .sidebar {
-      width: 260px;
-      background: #141414;
-      border-right: 1px solid #262626;
-      padding: 24px 16px;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 0 12px 24px;
-      border-bottom: 1px solid #262626;
-      margin-bottom: 24px;
-    }
-    
-    .brand-avatar {
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, #10b981, #06b6d4);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 16px;
-    }
-    
-    .brand-text {
-      font-weight: 600;
-      font-size: 16px;
-    }
-    
-    .nav-section {
-      margin-bottom: 24px;
-    }
-    
-    .nav-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #737373;
-      padding: 0 12px;
-      margin-bottom: 8px;
-    }
-    
-    .nav-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.2s;
-      color: #a3a3a3;
-      text-decoration: none;
-    }
-    
-    .nav-item:hover {
-      background: #1f1f1f;
-      color: #fafafa;
-    }
-    
-    .nav-item.active {
-      background: #1f1f1f;
-      color: #fafafa;
-    }
-    
-    .nav-item svg {
-      width: 18px;
-      height: 18px;
-    }
-    
-    /* Main Content */
-    .main {
-      flex: 1;
-      padding: 32px 40px;
-      overflow-y: auto;
-    }
-    
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 32px;
-    }
-    
-    h1 {
-      font-size: 28px;
-      font-weight: 700;
-    }
-    
-    .header-actions {
-      display: flex;
-      gap: 12px;
-    }
-    
-    .btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border-radius: 8px;
-      border: 1px solid #262626;
-      background: #141414;
-      color: #fafafa;
-      font-size: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    
-    .btn:hover {
-      background: #1f1f1f;
-      border-color: #404040;
-    }
-    
-    .btn-primary {
-      background: #10b981;
-      border-color: #10b981;
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background: #059669;
-      border-color: #059669;
-    }
-    
-    /* Cards */
-    .section {
-      margin-bottom: 40px;
-    }
-    
-    .section-title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 20px;
-      color: #fafafa;
-    }
-    
-    .builds-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 16px;
-    }
-    
-    .build-card {
-      background: #141414;
-      border: 1px solid #262626;
-      border-radius: 12px;
-      padding: 20px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    
-    .build-card:hover {
-      border-color: #404040;
-      transform: translateY(-2px);
-    }
-    
-    .build-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-    
-    .build-name {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 15px;
-    }
-    
-    .build-emoji {
-      font-size: 18px;
-    }
-    
-    .status-badge {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 500;
-    }
-    
-    .status-ready {
-      background: rgba(16, 185, 129, 0.15);
-      color: #10b981;
-    }
-    
-    .status-dev {
-      background: rgba(245, 158, 11, 0.15);
-      color: #f59e0b;
-    }
-    
-    .build-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: #737373;
-      font-size: 13px;
-      margin-bottom: 8px;
-    }
-    
-    .build-meta .dot {
-      width: 4px;
-      height: 4px;
-      background: #525252;
-      border-radius: 50%;
-    }
-    
-    .build-message {
-      color: #a3a3a3;
-      font-size: 13px;
-    }
-    
-    .build-time {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-top: 12px;
-      color: #737373;
-      font-size: 12px;
-    }
-    
-    /* Quick Links */
-    .quick-links {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
-    .quick-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: #141414;
-      border: 1px solid #262626;
-      border-radius: 10px;
-      color: #fafafa;
-      text-decoration: none;
-      transition: all 0.2s;
-    }
-    
-    .quick-link:hover {
-      background: #1f1f1f;
-      border-color: #404040;
-    }
-    
-    .quick-link-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    
-    .quick-link-emoji {
-      font-size: 20px;
-    }
-    
-    .quick-link-text {
-      display: flex;
-      flex-direction: column;
-    }
-    
-    .quick-link-name {
-      font-weight: 500;
-      font-size: 14px;
-    }
-    
-    .quick-link-url {
-      font-size: 12px;
-      color: #737373;
-    }
-    
-    .quick-link-arrow {
-      color: #525252;
-      font-size: 18px;
-    }
-    
-    .warning-badge {
-      background: rgba(245, 158, 11, 0.15);
-      color: #f59e0b;
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 11px;
-      margin-left: 8px;
-    }
-    
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column;
-      }
-      
-      .sidebar {
-        width: 100%;
-        flex-direction: row;
-        padding: 16px;
-        border-right: none;
-        border-bottom: 1px solid #262626;
-      }
-      
-      .brand {
-        padding: 0;
-        border-bottom: none;
-        margin-bottom: 0;
-        margin-right: 16px;
-      }
-      
-      .nav-section {
-        display: flex;
-        margin-bottom: 0;
-        margin-right: 16px;
-      }
-      
-      .nav-label {
-        display: none;
-      }
-      
-      .nav-item {
-        padding: 8px 12px;
-      }
-      
-      .nav-item span {
-        display: none;
-      }
-      
-      .main {
-        padding: 20px 16px;
-      }
-      
-      .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-      }
-      
-      h1 {
-        font-size: 24px;
-      }
-      
-      .builds-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .build-card {
-        padding: 16px;
-      }
-      
-      .quick-link {
-        padding: 14px 16px;
-      }
-    }
-    
-    @media (max-width: 480px) {
-      .sidebar {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
-      
-      .brand-text {
-        display: none;
-      }
-      
-      .header-actions {
-        width: 100%;
-        justify-content: stretch;
-      }
-      
-      .btn {
-        flex: 1;
-        justify-content: center;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control - Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e5e5e5;
+            min-height: 100vh;
+        }
+        .header {
+            background: #0a0a0a;
+            border-bottom: 1px solid #262626;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #a3e635, #65a30d);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        .logo-text {
+            font-size: 20px;
+            font-weight: 600;
+            background: linear-gradient(90deg, #a3e635, #84cc16);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav {
+            display: flex;
+            gap: 8px;
+        }
+        .nav-btn {
+            background: transparent;
+            border: 1px solid #404040;
+            color: #a3a3a3;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover, .nav-btn.active {
+            background: #262626;
+            color: #e5e5e5;
+            border-color: #525252;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+        .sop-banner {
+            background: #171717;
+            border: 1px solid #404040;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        .sop-icon { font-size: 20px; margin-top: 2px; }
+        .sop-content h3 {
+            color: #a3e635;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+        .sop-content p {
+            color: #a3a3a3;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .section { display: none; }
+        .section.active { display: block; }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .card {
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .card:hover {
+            border-color: #404040;
+            transform: translateY(-2px);
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge.priority { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .badge.iterate { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+        .badge.done { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .badge.planning { background: rgba(107, 114, 128, 0.2); color: #6b7280; }
+        .card-desc {
+            color: #a3a3a3;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .card-meta {
+            font-size: 12px;
+            color: #737373;
+        }
+        .card-issues {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid #262626;
+        }
+        .issue-tag {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #a3e635;
+            margin-bottom: 4px;
+        }
+        .stat-label {
+            font-size: 13px;
+            color: #a3a3a3;
+        }
+        .task-item {
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .task-left {
+            flex: 1;
+        }
+        .task-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .task-meta {
+            font-size: 12px;
+            color: #737373;
+        }
+        .task-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .status-select {
+            background: #262626;
+            border: 1px solid #404040;
+            color: #e5e5e5;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .priority-badge {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .priority-high { background: #ef4444; }
+        .priority-medium { background: #f59e0b; }
+        .priority-low { background: #10b981; }
+        .deadline-banner {
+            background: rgba(163, 230, 53, 0.1);
+            border: 1px solid #a3e635;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .deadline-date {
+            font-size: 24px;
+            font-weight: 700;
+            color: #a3e635;
+        }
+        .affiliate-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 12px;
+        }
+        .affiliate-item {
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .affiliate-brand {
+            font-weight: 500;
+        }
+        .affiliate-status {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .cron-list {
+            display: grid;
+            gap: 12px;
+        }
+        .cron-item {
+            background: #171717;
+            border: 1px solid #262626;
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cron-left {
+            flex: 1;
+        }
+        .cron-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .cron-schedule {
+            font-size: 12px;
+            color: #a3a3a3;
+        }
+        .cron-desc {
+            font-size: 12px;
+            color: #737373;
+            margin-top: 4px;
+        }
+        .toggle {
+            width: 44px;
+            height: 24px;
+            background: #262626;
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .toggle.active { background: #a3e635; }
+        .toggle::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: transform 0.2s;
+        }
+        .toggle.active::after { transform: translateX(20px); }
+        .add-task-btn {
+            background: #a3e635;
+            color: #0a0a0a;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #737373;
+        }
+        a { color: inherit; text-decoration: none; }
+        @media (max-width: 768px) {
+            .nav { flex-wrap: wrap; }
+            .grid { grid-template-columns: 1fr; }
+            .stats-row { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-avatar">D</div>
-        <div class="brand-text">Doug's Sites</div>
-      </div>
-      
-      <div class="nav-section">
-        <div class="nav-label">Overview</div>
-        <a href="#" class="nav-item active">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <rect x="3" y="3" width="7" height="7" rx="1"/>
-            <rect x="14" y="3" width="7" height="7" rx="1"/>
-            <rect x="14" y="14" width="7" height="7" rx="1"/>
-            <rect x="3" y="14" width="7" height="7" rx="1"/>
-          </svg>
-          Dashboard
-        </a>
-        <a href="#" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
-          </svg>
-          Builds
-        </a>
-      </div>
-      
-      <div class="nav-section">
-        <div class="nav-label">Tools</div>
-        <a href="#" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M18 20V10"/>
-            <path d="M12 20V4"/>
-            <path d="M6 20v-6"/>
-          </svg>
-          Analytics
-        </a>
-        <a href="#" class="nav-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="3"/>
-            <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>
-          </svg>
-          Settings
-        </a>
-      </div>
-    </aside>
-    
-    <!-- Main Content -->
-    <main class="main">
-      <div class="header">
-        <h1>Dashboard</h1>
-        <div class="header-actions">
-          <button class="btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M23 4v6h-6"/>
-              <path d="M1 20v-6h6"/>
-              <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
-            </svg>
-            Refresh
-          </button>
-          <button class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 5v14M5 12h14"/>
-            </svg>
-            New Build
-          </button>
+    <header class="header">
+        <div class="logo">
+            <div class="logo-icon">🎯</div>
+            <div class="logo-text">Mission Control</div>
         </div>
-      </div>
-      
-      <!-- Latest Builds -->
-      <div class="section">
-        <h2 class="section-title">Latest Builds</h2>
-        <div class="builds-grid">
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">🏋️</span>
-                Health Index
-              </div>
-              <span class="status-badge status-ready">Ready</span>
+        <nav class="nav">
+            <button class="nav-btn active" onclick="showSection('overview')">Overview</button>
+            <button class="nav-btn" onclick="showSection('projects')">Projects</button>
+            <button class="nav-btn" onclick="showSection('tasks')">Tasks</button>
+            <button class="nav-btn" onclick="showSection('cron')">Cron Jobs</button>
+            <button class="nav-btn" onclick="showSection('agents')">Agents</button>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- SOP Banner -->
+        <div class="sop-banner">
+            <div class="sop-icon">📋</div>
+            <div class="sop-content">
+                <h3>Source of Truth</h3>
+                <p>Check here first. Update when things change. Don't rebuild from scratch — iterate on what's deployed.</p>
             </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Backend API stable</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              Just now
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">🎲</span>
-                RumbleDeals
-              </div>
-              <span class="status-badge status-ready">Ready</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Latest deployment</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              1h ago
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">👶</span>
-                Baby Gear
-              </div>
-              <span class="status-badge status-ready">Ready</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Title metadata fix</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              2h ago
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">🍎</span>
-                Mactrackr
-              </div>
-              <span class="status-badge status-ready">Ready</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>4 new blog posts added</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              30m ago
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">⚾</span>
-                Slugger
-              </div>
-              <span class="status-badge status-ready">Ready</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Graded card tracker live</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              2d ago
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">🃏</span>
-                Mint Condition
-              </div>
-              <span class="status-badge status-ready">Ready</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Domain redirect fix needed</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              1d ago
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">🪙</span>
-                Coin Curator
-              </div>
-              <span class="status-badge status-ready">Ready</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Graded coin tracker deployed</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              3d ago
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">🤖</span>
-                Robot Atlas
-              </div>
-              <span class="status-badge status-dev">In Dev</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Hardware tracking - WIP</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              In progress
-            </div>
-          </div>
-          
-          <div class="build-card">
-            <div class="build-header">
-              <div class="build-name">
-                <span class="build-emoji">📚</span>
-                Grail Watch
-              </div>
-              <span class="status-badge status-dev">In Dev</span>
-            </div>
-            <div class="build-meta">
-              <span>main</span>
-              <span class="dot"></span>
-              <span>Comic book tracker - 12 blog posts</span>
-            </div>
-            <div class="build-time">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 6v6l4 2"/>
-              </svg>
-              Just now
-            </div>
-          </div>
         </div>
-      </div>
-      
-      <!-- Quick Links -->
-      <div class="section">
-        <h2 class="section-title">Quick Links</h2>
-        <div class="quick-links">
-          <a href="https://mintcondition.app" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">🃏</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Mint Condition</span>
-                <span class="quick-link-url">mintcondition.app</span>
-              </div>
+
+        <!-- Overview Section -->
+        <div id="overview" class="section active">
+            <h2 class="section-title">🎯 Priority Projects</h2>
+            <div class="grid" id="priority-projects"></div>
+            
+            <h2 class="section-title">📊 Stats</h2>
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Affiliates Approved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">Affiliates Pending</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">14</div>
+                    <div class="stat-label">To Apply</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="task-count">0</div>
+                    <div class="stat-label">Tasks To Do</div>
+                </div>
             </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://coincurator.vercel.app" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">🪙</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Coin Curator <span class="warning-badge">⚠️ domain broken</span></span>
-                <span class="quick-link-url">coincurator.app → vercel</span>
-              </div>
+
+            <!-- Deadline -->
+            <div class="deadline-banner">
+                <div class="deadline-date">Apr 2</div>
+                <div>
+                    <div style="font-weight: 600;">Apple/B&H Affiliate Deadline</div>
+                    <div style="font-size: 13px; color: #a3a3a3;">Application reopening day</div>
+                </div>
             </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://gpudrip.com" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">🎮</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">GPU Drip</span>
-                <span class="quick-link-url">gpudrip.com</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://healthindex.app" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">❤️</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Health Index</span>
-                <span class="quick-link-url">healthindex.app</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://mactrackr.com" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">🍎</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Mactrackr</span>
-                <span class="quick-link-url">mactrackr.com</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://rumbledeals.com" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">🎲</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">RumbleDeals</span>
-                <span class="quick-link-url">rumbledeals.com</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://babygearhere.com" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">👶</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Baby Gear</span>
-                <span class="quick-link-url">babygearhere.com</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://sluggerdata.com" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">⚾</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Slugger</span>
-                <span class="quick-link-url">sluggerdata.com</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="https://coincurator.app" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">🪙</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Coin Curator</span>
-                <span class="quick-link-url">coincurator.app</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
-          
-          <a href="#" class="quick-link">
-            <div class="quick-link-left">
-              <span class="quick-link-emoji">📚</span>
-              <div class="quick-link-text">
-                <span class="quick-link-name">Grail Watch</span>
-                <span class="quick-link-url">Coming soon</span>
-              </div>
-            </div>
-            <span class="quick-link-arrow">→</span>
-          </a>
+
+            <h2 class="section-title">⚡ Quick Tasks</h2>
+            <div id="quick-tasks"></div>
         </div>
-      </div>
-    </main>
-  </div>
+
+        <!-- Projects Section -->
+        <div id="projects" class="section">
+            <h2 class="section-title">📁 All Projects</h2>
+            <div id="projects-list"></div>
+        </div>
+
+        <!-- Tasks Section -->
+        <div id="tasks" class="section">
+            <button class="add-task-btn" onclick="showAddTask()">+ Add Task</button>
+            <h2 class="section-title">📋 All Tasks</h2>
+            <div id="tasks-list"></div>
+        </div>
+
+        <!-- Cron Jobs Section -->
+        <div id="cron" class="section">
+            <h2 class="section-title">⏱️ Cron Jobs</h2>
+            <div class="cron-list" id="cron-list"></div>
+        </div>
+
+        <!-- Agents Section -->
+        <div id="agents" class="section">
+            <h2 class="section-title">🤖 Agent Activity</h2>
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header">
+                    <div class="card-title">🎯 Main Agent</div>
+                    <span class="badge done">Active</span>
+                </div>
+                <div class="card-desc">Currently building Mission Control dashboard. Token usage optimized.</div>
+                <div class="card-meta">Session: agent:main:main • 101k tokens in</div>
+            </div>
+            <h3 style="margin: 24px 0 16px; font-size: 16px;">Recent Subagents</h3>
+            <div id="subagents-list">
+                <div class="empty-state">No active subagents</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let data = {};
+        
+        // Load data from JSON
+        fetch('data.json')
+            .then(r => r.json())
+            .then(d => {
+                data = d;
+                renderAll();
+            })
+            .catch(err => console.error('Failed to load data:', err));
+
+        function renderAll() {
+            renderProjects();
+            renderTasks();
+            renderCron();
+            updateTaskCount();
+        }
+
+        function renderProjects() {
+            const priority = document.getElementById('priority-projects');
+            const all = document.getElementById('projects-list');
+            
+            // Priority projects
+            const priorityProjects = data.projects.filter(p => p.status === 'PRIORITY');
+            priority.innerHTML = priorityProjects.map(p => `
+                <a href="https://${p.domain}" target="_blank" class="card">
+                    <div class="card-header">
+                        <div class="card-title">${p.name}</div>
+                        <span class="badge ${p.status.toLowerCase()}">${p.status}</span>
+                    </div>
+                    <div class="card-desc">${p.shortDesc}</div>
+                    <div class="card-meta">${p.path} • Last deploy: ${p.lastDeploy || 'N/A'}</div>
+                    ${p.issues.length ? `<div class="card-issues">${p.issues.map(i => `<span class="issue-tag">⚠️ ${i}</span>`).join('')}</div>` : ''}
+                </a>
+            `).join('');
+            
+            // All projects
+            all.innerHTML = data.projects.map(p => `
+                <div class="card" style="margin-bottom: 12px;">
+                    <div class="card-header">
+                        <div class="card-title">${p.name}</div>
+                        <span class="badge ${p.status.toLowerCase()}">${p.status}</span>
+                    </div>
+                    <div class="card-desc">${p.shortDesc}</div>
+                    <div class="card-meta">
+                        <strong>Deployed:</strong> <a href="https://${p.domain}" target="_blank">${p.domain}</a><br>
+                        <strong>Local:</strong> ${p.path || 'N/A'}
+                    </div>
+                    ${p.issues.length ? `<div class="card-issues">${p.issues.map(i => `<span class="issue-tag">⚠️ ${i}</span>`).join('')}</div>` : ''}
+                </div>
+            `).join('');
+        }
+
+        function renderTasks() {
+            const quick = document.getElementById('quick-tasks');
+            const all = document.getElementById('tasks-list');
+            
+            // Quick tasks (top 5)
+            const quickTasks = data.tasks.slice(0, 5);
+            quick.innerHTML = quickTasks.map(t => `
+                <div class="task-item">
+                    <div class="task-left">
+                        <div class="task-title">${t.title}</div>
+                        <div class="task-meta">${t.project}</div>
+                    </div>
+                    <div class="task-right">
+                        <select class="status-select" onchange="updateTaskStatus('${t.id}', this.value)">
+                            <option value="todo" ${t.status === 'todo' ? 'selected' : ''}>To Do</option>
+                            <option value="in-progress" ${t.status === 'in-progress' ? 'selected' : ''}>In Progress</option>
+                            <option value="done" ${t.status === 'done' ? 'selected' : ''}>Done</option>
+                        </select>
+                        <div class="priority-badge priority-${t.priority}"></div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // All tasks
+            all.innerHTML = data.tasks.map(t => `
+                <div class="task-item">
+                    <div class="task-left">
+                        <div class="task-title">${t.title}</div>
+                        <div class="task-meta">${t.project} • Assigned: ${t.assignee}</div>
+                    </div>
+                    <div class="task-right">
+                        <select class="status-select" onchange="updateTaskStatus('${t.id}', this.value)">
+                            <option value="todo" ${t.status === 'todo' ? 'selected' : ''}>To Do</option>
+                            <option value="in-progress" ${t.status === 'in-progress' ? 'selected' : ''}>In Progress</option>
+                            <option value="done" ${t.status === 'done' ? 'selected' : ''}>Done</option>
+                        </select>
+                        <div class="priority-badge priority-${t.priority}"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCron() {
+            const list = document.getElementById('cron-list');
+            list.innerHTML = data.cronJobs.map(c => `
+                <div class="cron-item">
+                    <div class="cron-left">
+                        <div class="cron-name">${c.name}</div>
+                        <div class="cron-schedule">⏰ ${c.schedule}</div>
+                        <div class="cron-desc">${c.description} • Next: ${c.nextRun}</div>
+                    </div>
+                    <div class="toggle ${c.enabled ? 'active' : ''}" onclick="toggleCron(this)"></div>
+                </div>
+            `).join('');
+        }
+
+        function updateTaskCount() {
+            const count = data.tasks.filter(t => t.status !== 'done').length;
+            document.getElementById('task-count').textContent = count;
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function updateTaskStatus(id, status) {
+            const task = data.tasks.find(t => t.id === id);
+            if (task) {
+                task.status = status;
+                renderTasks();
+                updateTaskCount();
+            }
+        }
+
+        function toggleCron(el) {
+            el.classList.toggle('active');
+        }
+
+        function showAddTask() {
+            const title = prompt('Task title:');
+            if (title) {
+                data.tasks.push({
+                    id: String(Date.now()),
+                    title,
+                    project: 'General',
+                    priority: 'medium',
+                    status: 'todo',
+                    assignee: 'You'
+                });
+                renderTasks();
+                updateTaskCount();
+            }
+        }
+    </script>
 </body>
 </html>

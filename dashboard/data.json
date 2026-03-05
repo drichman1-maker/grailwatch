@@ -1,0 +1,39 @@
+{
+  "lastUpdated": "2026-03-05",
+  "projects": [
+    {"id": "mactrackr", "name": "🍎 Mactrackr", "status": "PRIORITY", "statusColor": "#ef4444", "domain": "mactrackr.app", "path": "mactrackr-frontend/", "shortDesc": "Apple price tracking", "issues": [], "lastDeploy": "2026-03-04"},
+    {"id": "health-index", "name": "🏥 Health Index", "status": "PRIORITY", "statusColor": "#ef4444", "domain": "healthindex.app", "path": "healthindex-frontend/", "shortDesc": "Wellness aggregator", "issues": [], "lastDeploy": "2026-03-05"},
+    {"id": "gpu-drip", "name": "💻 GPU Drip", "status": "PRIORITY", "statusColor": "#ef4444", "domain": "gpudrip-static.vercel.app", "path": "gpudrip-static/", "shortDesc": "GPU price tracker", "issues": ["Brand toggle not working on production"], "lastDeploy": "2026-03-04"},
+    {"id": "babygear", "name": "👶 BabyGear", "status": "DONE", "statusColor": "#10b981", "domain": "babygear-next.vercel.app", "path": "babygear-next/", "shortDesc": "Baby products", "issues": [], "lastDeploy": "2026-03-05"},
+    {"id": "air-quality", "name": "🌬️ Air Quality", "status": "PLANNING", "statusColor": "#6b7280", "domain": "airquality.app", "path": "", "shortDesc": "Air purifiers", "issues": [], "lastDeploy": ""}
+  ],
+  "tasks": [
+    {"id": "1", "title": "GPU Drip price toggle fix", "project": "GPU Drip", "priority": "high", "status": "todo", "assignee": "You"},
+    {"id": "2", "title": "Check affiliate statuses (Sunlighten, Joovv)", "project": "Health Index", "priority": "medium", "status": "todo", "assignee": "You"},
+    {"id": "3", "title": "America Cryo Affiliately setup", "project": "Health Index", "priority": "high", "status": "in-progress", "assignee": "You"},
+    {"id": "4", "title": "Sun Home sauna application", "project": "Health Index", "priority": "medium", "status": "in-progress", "assignee": "You"},
+    {"id": "5", "title": "Build Air Quality Site", "project": "Air Quality", "priority": "medium", "status": "todo", "assignee": "Henry"}
+  ],
+  "affiliates": [
+    {"id": "1", "brand": "America Cryo", "category": "Cryotherapy", "status": "Ready (aff=311)", "commission": "~8%", "color": "#3b82f6"},
+    {"id": "2", "brand": "Amazon", "category": "General", "status": "Approved", "commission": "~4%", "color": "#10b981"},
+    {"id": "3", "brand": "eBay", "category": "General", "status": "Approved", "commission": "~4%", "color": "#10b981"},
+    {"id": "4", "brand": "Skimlinks", "category": "Aggregator", "status": "Apply Now", "commission": "varies", "color": "#8b5cf6"},
+    {"id": "5", "brand": "Sunlighten", "category": "Saunas", "status": "Applied 3/3", "commission": "6-10%", "color": "#f59e0b"},
+    {"id": "6", "brand": "Joovv", "category": "Red Light", "status": "Applied 3/3", "commission": "6-10%", "color": "#f59e0b"},
+    {"id": "7", "brand": "Four Sigmatic", "category": "Mushroom Coffee", "status": "Applied 3/3", "commission": "~15%", "color": "#f59e0b"}
+  ],
+  "cronJobs": [
+    {"name": "Morning task check", "schedule": "9am daily", "enabled": true, "nextRun": "Tomorrow 9am", "description": "Check dashboard priorities"},
+    {"name": "Daily improvement", "schedule": "10am daily", "enabled": true, "nextRun": "Tomorrow 10am", "description": "Review yesterday's work"},
+    {"name": "Skimlinks reminder", "schedule": "10am daily", "enabled": true, "nextRun": "Tomorrow 10am", "description": "Apply for Skimlinks"},
+    {"name": "Deals check", "schedule": "2pm daily", "enabled": true, "nextRun": "Tomorrow 2pm", "description": "Check price trackers"},
+    {"name": "Evening affiliate check", "schedule": "10pm daily", "enabled": true, "nextRun": "Tonight 10pm", "description": "Check affiliate applications"},
+    {"name": "Weekly sites health", "schedule": "Sundays 12pm", "enabled": true, "nextRun": "Mar 9", "description": "Check all sites for issues"},
+    {"name": "Weekly summary", "schedule": "Sundays 6pm", "enabled": true, "nextRun": "Mar 9", "description": "Full mission control summary"},
+    {"name": "April 2 deadline", "schedule": "Apr 1-2 9am", "enabled": true, "nextRun": "Apr 1", "description": "Apple/B&H affiliate deadline"}
+  ],
+  "deadlines": [
+    {"date": "Apr 2", "note": "Apple/B&H affiliate application reopening"}
+  ]
+}

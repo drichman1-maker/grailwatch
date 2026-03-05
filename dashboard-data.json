@@ -1,0 +1,27 @@
+{
+  "projects": [
+    {"id": "mactrackr", "name": "🍎 Mactrackr", "status": "PRIORITY", "domain": "mactrackr.app", "shortDesc": "Apple price tracking"},
+    {"id": "health-index", "name": "🏥 Health Index", "status": "PRIORITY", "domain": "healthindex.app", "shortDesc": "Wellness aggregator"},
+    {"id": "gpu-drip", "name": "💻 GPU Drip", "status": "PRIORITY", "domain": "gpudrip.app", "shortDesc": "GPU price tracker", "issue": "Brand toggle needs fix"},
+    {"id": "babygear", "name": "👶 BabyGear", "status": "DONE", "domain": "babygear-next.vercel.app", "shortDesc": "Baby products"},
+    {"id": "air-quality", "name": "🌬️ Air Quality", "status": "PLANNING", "domain": "airquality.app", "shortDesc": "Air purifiers"}
+  ],
+  "tasks": [
+    {"id": "1", "title": "GPU Drip price updates not showing", "project": "GPU Drip", "status": "todo", "priority": "high"},
+    {"id": "2", "title": "Check affiliate statuses (Sunlighten, Joovv)", "project": "Health Index", "status": "todo", "priority": "medium"},
+    {"id": "3", "title": "Add search to Health Index", "project": "Health Index", "status": "done", "priority": "low"},
+    {"id": "4", "title": "America Cryo Affiliately setup", "project": "Health Index", "status": "in-progress", "priority": "high"},
+    {"id": "5", "title": "Apply to Sun Home saunas", "project": "Health Index", "status": "in-progress", "priority": "medium"}
+  ],
+  "affiliates": [
+    {"brand": "America Cryo", "status": "Ready (aff=311)", "commission": "~8%"},
+    {"brand": "Amazon", "status": "Approved", "commission": "~4%"},
+    {"brand": "eBay", "status": "Approved", "commission": "~4%"},
+    {"brand": "Skimlinks", "status": "Apply Now", "commission": "varies"},
+    {"brand": "Sunlighten", "status": "Applied 3/3", "commission": "6-10%"},
+    {"brand": "Joovv", "status": "Applied 3/3", "commission": "6-10%"}
+  ],
+  "deadlines": [
+    {"date": "Apr 2", "note": "Apple/B&H affiliate deadline"}
+  ]
+}
