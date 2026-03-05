@@ -5,6 +5,10 @@ import Link from 'next/link';
 import { supabase, Project, Task, Affiliate } from './lib/supabase';
 import { AffiliateTracker } from './components/AffiliateTracker';
 import { QuickActions } from './components/QuickActions';
+import { AgentStatus } from './components/AgentStatus';
+import { ProjectIndex } from './components/ProjectIndex';
+import { PriorityQueue } from './components/PriorityQueue';
+import { CronJobs } from './components/CronJobs';
 
 // Status color mapping
 const getStatusColor = (status: string) => {

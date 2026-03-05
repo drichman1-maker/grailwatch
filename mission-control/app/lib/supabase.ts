@@ -13,7 +13,43 @@ export interface Project {
   description: string;
   domain: string;
   short_desc: string;
+  codebase_path: string;
+  deployed_url: string;
+  local_path: string;
+  stack: string;
+  tier: string;
   updated_at: string;
+}
+
+export interface AgentWork {
+  id: string;
+  agent_name: string;
+  current_task: string;
+  project: string;
+  status: 'active' | 'idle' | 'error';
+  started_at: string;
+  updated_at: string;
+}
+
+export interface CronJob {
+  id: string;
+  name: string;
+  schedule: string;
+  command: string;
+  description: string;
+  status: 'active' | 'paused' | 'failed';
+  last_run: string;
+  next_run: string;
+}
+
+export interface PriorityQueue {
+  id: string;
+  title: string;
+  project: string;
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  status: 'blocked' | 'ready' | 'in-progress';
+  blocked_reason?: string;
+  created_at: string;
 }
 
 export interface Task {
