@@ -76,10 +76,10 @@ const fallbackAffiliates = [
 ];
 
 const fallbackTasks = [
-  { id: '1', title: 'Fix GPU Drip brand toggle bug', project: 'GPU Drip', status: 'todo', assignee_initials: 'DR', priority: 'critical' },
-  { id: '2', title: 'Complete 8 blog posts for GPU Drip', project: 'GPU Drip', status: 'in-progress', assignee_initials: 'DR', priority: 'high' },
-  { id: '3', title: 'Remove alert banners from Health Index', project: 'Health Index', status: 'todo', assignee_initials: 'DR', priority: 'high' },
-  { id: '4', title: 'Add air filtration category page', project: 'Health Index', status: 'todo', assignee_initials: 'DR', priority: 'medium' },
+  { id: '1', title: 'Fix GPU Drip brand toggle bug', description: 'Brand toggle not working in production', project: 'GPU Drip', status: 'todo', priority: 'critical', assignee: 'Douglas', assignee_initials: 'DR', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+  { id: '2', title: 'Complete 8 blog posts for GPU Drip', description: 'Write full articles for 8 incomplete posts', project: 'GPU Drip', status: 'in-progress', priority: 'high', assignee: 'Douglas', assignee_initials: 'DR', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+  { id: '3', title: 'Remove alert banners from Health Index', description: 'Get rid of alert banners/notifications', project: 'Health Index', status: 'todo', priority: 'high', assignee: 'Douglas', assignee_initials: 'DR', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
+  { id: '4', title: 'Add air filtration category page', description: 'New category for air filtration systems', project: 'Health Index', status: 'todo', priority: 'medium', assignee: 'Douglas', assignee_initials: 'DR', created_at: new Date().toISOString(), updated_at: new Date().toISOString() },
 ];
 
   const fetchData = async () => {
