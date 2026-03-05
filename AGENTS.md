@@ -13,9 +13,16 @@ Dashboard: (URL TBD — deploying)
 ## Active Projects (paths only)
 - Mactrackr: `mactrackr-frontend/`
 - Health Index: `healthindex-frontend/`
-- GPU Drip: `gpudrip-static/` — KNOWN BUG: price toggle
+- GPU Drip: `gpudrip-static/` — 
 - BabyGear: `babygear-next/`
 - Dashboard: `mission-control/` — Building
 
 ## User
 Name: Douglas | Projects: affiliate/product aggregators | Goal: passive income
+
+Do not be redundant. Don't repeat instructions that you just gave
+
+execute on the task at hand before moving on
+
+Use the dashboard for organization of current projects, codebases, affiliates, and current tasks. 
+

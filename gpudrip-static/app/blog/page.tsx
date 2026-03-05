@@ -104,14 +104,7 @@ export default function BlogPage() {
                                 transition: 'all 0.2s',
                                 textDecoration: 'none',
                             }}
-                            onMouseEnter={(e) => {
-                                e.currentTarget.style.borderColor = '#00ff88'
-                                e.currentTarget.style.transform = 'translateY(-2px)'
-                            }}
-                            onMouseLeave={(e) => {
-                                e.currentTarget.style.borderColor = '#2a2a2a'
-                                e.currentTarget.style.transform = 'translateY(0)'
-                            }}
+                            className="blog-card"
                         >
                             <div style={{ 
                                 display: 'flex', 

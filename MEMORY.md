@@ -42,15 +42,16 @@ OpenClaw files are unorganized and bloated. Need cleaner tracking system.
 ---
 
 ## GPU Drip — CRITICAL STATUS
+**Domain:** https://gpudrip-static.vercel.app
+**Status Doc:** `GPURIP-STATUS.md`
 
-### Blockers (Fix Immediately)
-- [ ] Latest edits not showing in production
-- [ ] Brand toggle still broken
-- [ ] **8 blog posts incomplete** — need full articles written
+### Completed
+- [x] Brand toggle - FIXED
+- [x] Latest edits deployed
 
-### Expansion Ideas
-- Add retailers: ExtremeTech, Tom's Hardware, PCMag
-- Multi-retailer price comparison
+### Still Missing
+- 8 blog posts (content location unknown)
+- Retailer expansion
 - Consider scraping automation (see Tools section)
 
 ---

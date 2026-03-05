@@ -202,8 +202,7 @@ export default async function BlogPostPage({ params }: Props) {
             gap: 6,
             transition: 'color 0.2s'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#00ff88'}
-          onMouseLeave={(e) => e.currentTarget.style.color = '#888'}
+          className="back-link"
         >
           ← Back to blog
         </Link>
