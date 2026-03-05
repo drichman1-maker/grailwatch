@@ -1,11 +1,12 @@
 import Link from 'next/link';
+import { BlogCard } from '@/components/blog-card';
 
 export const metadata = {
   title: "Blog — GPUDrip",
   description: "GPU buying guides, price tracking tips, and market insights.",
 };
 
-const posts = [
+export const posts = [
   {
     id: "best-budget-gpu-2026",
     title: "Best Budget GPU 2026: Best Graphics Cards Under $400",

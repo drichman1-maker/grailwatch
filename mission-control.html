@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission Control 🚀</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0f0f0f;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 20px 30px;
+            border-bottom: 1px solid #333;
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .header .timestamp {
+            float: right;
+            color: #888;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .panel {
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #2a2a2a;
+            overflow: hidden;
+        }
+        .panel-header {
+            background: linear-gradient(135deg, #2a2a3e 0%, #1f1f2e 100%);
+            padding: 15px 20px;
+            border-bottom: 1px solid #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .panel-header h2 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .panel-content {
+            padding: 20px;
+        }
+        .panel.full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Calendar */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            text-align: center;
+        }
+        .calendar-day-header {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            padding: 10px;
+        }
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #252525;
+            border-radius: 8px;
+            font-size: 14px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .calendar-day:hover {
+            background: #333;
+        }
+        .calendar-day.today {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 6px;
+            width: 4px;
+            height: 4px;
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+        .calendar-day.applied::after {
+            background: #4ecdc4;
+        }
+
+        /* Project Cards */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        .project-card {
+            background: linear-gradient(135deg, #252525 0%, #1f1f2e 100%);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #333;
+            transition: all 0.2s;
+        }
+        .project-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        .project-card h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .project-card .status {
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .status.live { background: #2ecc71; color: #000; }
+        .status.dev { background: #f39c12; color: #000; }
+        .status.planning { background: #3498db; color: #fff; }
+        .project-card p {
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 12px;
+        }
+        .project-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .project-links a {
+            font-size: 12px;
+            color: #667eea;
+            text-decoration: none;
+            padding: 6px 12px;
+            background: rgba(102, 126, 234, 0.1);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+        .project-links a:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+
+        /* Tasks */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            background: #252525;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .task-item:hover {
+            background: #2a2a2a;
+        }
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #667eea;
+            border-radius: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .task-item.completed .task-checkbox {
+            background: #667eea;
+        }
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+            color: #666;
+        }
+        .task-text {
+            flex: 1;
+            font-size: 14px;
+        }
+        .task-priority {
+            font-size: 11px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .priority-high { background: #e74c3c; color: white; }
+        .priority-med { background: #f39c12; color: black; }
+        .priority-low { background: #3498db; color: white; }
+        .task-project {
+            font-size: 11px;
+            color: #888;
+            padding: 2px 8px;
+            background: #333;
+            border-radius: 4px;
+        }
+
+        /* Affiliate Status */
+        .affiliate-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #252525 0%, #1f1f2e 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+        .affiliate-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+        .affiliate-table th {
+            text-align: left;
+            padding: 12px;
+            color: #888;
+            font-weight: 500;
+            border-bottom: 1px solid #333;
+        }
+        .affiliate-table td {
+            padding: 12px;
+            border-bottom: 1px solid #2a2a2a;
+        }
+        .affiliate-table tr:hover {
+            background: #252525;
+        }
+        .badge {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        .badge-approved { background: #2ecc71; color: #000; }
+        .badge-pending { background: #f39c12; color: #000; }
+        .badge-action { background: #e74c3c; color: #fff; }
+        .badge-ready { background: #3498db; color: #fff; }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .affiliate-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Mission Control</h1>
+        <span class="timestamp" id="timestamp">Loading...</span>
+    </div>
+
+    <div class="container">
+        <!-- Projects Panel -->
+        <div class="panel full-width">
+            <div class="panel-header">
+                <span>📦</span>
+                <h2>Projects & Sites</h2>
+            </div>
+            <div class="panel-content">
+                <div class="project-grid">
+                    <div class="project-card">
+                        <h3>🏥 Health Index</h3>
+                        <span class="status live">LIVE</span>
+                        <p>Wellness product aggregator with affiliate links. Next.js, Vercel deployed.</p>
+                        <div class="project-links">
+                            <a href="https://health-index.vercel.app" target="_blank">Live Site</a>
+                            <a href="file:///Users/douglasrichman/.openclaw/workspace/healthindex-frontend" target="_blank">Local Code</a>
+                            <a href="#">Vercel Dashboard</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>💻 GPU Drip</h3>
+                        <span class="status live">LIVE</span>
+                        <p>GPU price tracker with deals. Static export, 38 pages.</p>
+                        <div class="project-links">
+                            <a href="https://gpudrip-static.vercel.app" target="_blank">Live Site</a>
+                            <a href="file:///Users/douglasrichman/.openclaw/workspace/gpudrip-static" target="_blank">Local Code</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>🍎 Mactrackr</h3>
+                        <span class="status live">LIVE</span>
+                        <p>Apple price tracker with history. Vite + React.</p>
+                        <div class="project-links">
+                            <a href="#">Live Site</a>
+                            <a href="file:///Users/douglasrichman/.openclaw/workspace/mactrackr-frontend" target="_blank">Local Code</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <h3>🌬️ Air Quality Site</h3>
+                        <span class="status planning">PLANNING</span>
+                        <p>IQAir, Molekule, Austin Air affiliates. Needs build.</p>
+                        <div class="project-links">
+                            <a href="#">Notes</a>
+                            <a href="file:///Users/douglasrichman/.openclaw/workspace" target="_blank">Workspace</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <span>📅</span>
+                <h2>Calendar & Deadlines</h2>
+            </div>
+            <div class="panel-content">
+                <div class="calendar-grid" id="calendar">
+                    <!-- Generated by JS -->
+                </div>
+                <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid #333;">
+                    <div style="font-size: 13px; margin-bottom: 8px;"><span style="color: #ff6b6b;">●</span> Deadline / Event</div>
+                    <div style="font-size: 13px;"><span style="color: #4ecdc4;">●</span> Application Submitted</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Affiliate Status Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <span>💰</span>
+                <h2>Affiliate Status</h2>
+            </div>
+            <div class="panel-content">
+                <div class="affiliate-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Approved</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">14</div>
+                        <div class="stat-label">To Apply</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Rejected</div>
+                    </div>
+                </div>
+                <table class="affiliate-table">
+                    <thead>
+                        <tr>
+                            <th>Brand</th>
+                            <th>Category</th>
+                            <th>Status</th>
+                            <th>Commission</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>America Cryo</td>
+                            <td>Cryotherapy</td>
+                            <td><span class="badge badge-ready">Ready (aff=311)</span></td>
+                            <td>~8%</td>
+                        </tr>
+                        <tr>
+                            <td>Amazon</td>
+                            <td>General</td>
+                            <td><span class="badge badge-approved">Approved</span></td>
+                            <td>~4%</td>
+                        </tr>
+                        <tr>
+                            <td>eBay</td>
+                            <td>General</td>
+                            <td><span class="badge badge-approved">Approved</span></td>
+                            <td>~4%</td>
+                        </tr>
+                        <tr>
+                            <td>Sunlighten</td>
+                            <td>Saunas</td>
+                            <td><span class="badge badge-pending">Applied 3/3</span></td>
+                            <td>6-10%</td>
+                        </tr>
+                        <tr>
+                            <td>Joovv</td>
+                            <td>Red Light</td>
+                            <td><span class="badge badge-pending">Applied 3/3</span></td>
+                            <td>6-10%</td>
+                        </tr>
+                        <tr>
+                            <td>Four Sigmatic</td>
+                            <td>Mushroom Coffee</td>
+                            <td><span class="badge badge-pending">Applied 3/3</span></td>
+                            <td>~15%</td>
+                        </tr>
+                        <tr>
+                            <td>NVIDIA</td>
+                            <td>GPU/Tech</td>
+                            <td><span class="badge badge-action">Apply Now</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Apple</td>
+                            <td>Tech</td>
+                            <td><span class="badge badge-action">Apply Apr 2</span></td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Hyperice</td>
+                            <td>Recovery</td>
+                            <td><span class="badge badge-action">Apply Now</span></td>
+                            <td>8-12%</td>
+                        </tr>
+                        <tr>
+                            <td>Theragun</td>
+                            <td>Massage</td>
+                            <td><span class="badge badge-action">Apply Now</span></td>
+                            <td>8-12%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Tasks Panel -->
+        <div class="panel full-width">
+            <div class="panel-header">
+                <span>✅</span>
+                <h2>Current Tasks & Progress</h2>
+            </div>
+            <div class="panel-content">
+                <div class="task-list">
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Complete America Cryo Affiliately setup and create affiliate link</span>
+                        <span class="task-priority priority-high">HIGH</span>
+                        <span class="task-project">Health Index</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Verify Adorama affiliate status</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">General</span>
+                    </div>
+                    <div class="task-item completed">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Apply to Sunlighten saunas</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">Health Index</span>
+                    </div>
+                    <div class="task-item completed">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Apply to Joovv red light</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">Health Index</span>
+                    </div>
+                    <div class="task-item completed">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Apply to Four Sigmatic</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">Health Index</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Apply to Sun Home (saunas + blankets)</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">Health Index</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Apply to NVIDIA affiliate program</span>
+                        <span class="task-priority priority-high">HIGH</span>
+                        <span class="task-project">GPU Drip</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Apply to Best Buy affiliate program</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">GPU Drip</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Add search bar to Health Index</span>
+                        <span class="task-priority priority-low">LOW</span>
+                        <span class="task-project">Health Index</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Add search bar to Mactrackr</span>
+                        <span class="task-priority priority-low">LOW</span>
+                        <span class="task-project">Mactrackr</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Reapply to B&H (available April 2)</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">General</span>
+                    </div>
+                    <div class="task-item">
+                        <div class="task-checkbox"></div>
+                        <span class="task-text">Apply to Apple affiliate (April 2)</span>
+                        <span class="task-priority priority-med">MED</span>
+                        <span class="task-project">Mactrackr</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <span>🔗</span>
+                <h2>Quick Links</h2>
+            </div>
+            <div class="panel-content">
+                <div class="task-list">
+                    <div class="task-item" style="cursor: pointer;" onclick="window.open('https://vercel.com/dashboard', '_blank')">
+                        <span class="task-text">Vercel Dashboard</span>
+                    </div>
+                    <div class="task-item" style="cursor: pointer;" onclick="window.open('https://github.com', '_blank')">
+                        <span class="task-text">GitHub</span>
+                    </div>
+                    <div class="task-item" style="cursor: pointer;" onclick="window.open('https://mail.google.com', '_blank')">
+                        <span class="task-text">Gmail</span>
+                    </div>
+                    <div class="task-item" style="cursor: pointer;" onclick="window.open('https://calendar.google.com', '_blank')">
+                        <span class="task-text">Google Calendar</span>
+                    </div>
+                    <div class="task-item" style="cursor: pointer;" onclick="window.open('file:///Users/douglasrichman/.openclaw/workspace', '_blank')">
+                        <span class="task-text">Workspace Folder</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notes Panel -->
+        <div class="panel">
+            <div class="panel-header">
+                <span>📝</span>
+                <h2>Quick Notes</h2>
+            </div>
+            <div class="panel-content">
+                <div style="background: #252525; padding: 15px; border-radius: 8px; font-size: 13px; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;"><strong>CRITICAL:</strong> Always commit and push blog changes! 4 articles were lost because they weren't deployed.</p>
+                    <p style="color: #888; font-family: monospace; background: #1a1a1a; padding: 10px; border-radius: 4px;">
+                        git add -A && git commit -m "msg" && git push origin main
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Update timestamp
+        function updateTimestamp() {
+            const now = new Date();
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('timestamp').textContent = now.toLocaleDateString('en-US', options);
+        }
+        updateTimestamp();
+        setInterval(updateTimestamp, 60000);
+
+        // Generate calendar
+        function generateCalendar() {
+            const calendar = document.getElementById('calendar');
+            const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            
+            // Day headers
+            days.forEach(day => {
+                const header = document.createElement('div');
+                header.className = 'calendar-day-header';
+                header.textContent = day;
+                calendar.appendChild(header);
+            });
+
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const today = now.getDate();
+
+            // Empty cells before start
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                calendar.appendChild(empty);
+            }
+
+            // Days with events
+            const events = {
+                2: 'Apple/B&H apply',
+            };
+
+            const applied = [3]; // Days when applications were submitted
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'calendar-day';
+                cell.textContent = day;
+                
+                if (day === today) {
+                    cell.classList.add('today');
+                }
+                
+                if (events[day]) {
+                    cell.classList.add('has-event');
+                    cell.title = events[day];
+                }
+                
+                if (applied.includes(day)) {
+                    cell.classList.add('applied');
+                    cell.title = 'Applications submitted';
+                }
+                
+                calendar.appendChild(cell);
+            }
+        }
+        generateCalendar();
+
+        // Task click handlers
+        document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', function() {
+                this.parentElement.classList.toggle('completed');
+            });
+        });
+    </script>
+</body>
+</html>
