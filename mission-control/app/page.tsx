@@ -196,6 +196,20 @@ export default function Home() {
           <AffiliateTracker affiliates={affiliates} />
         </div>
 
+        {/* System Overview - New Components */}
+        <section className="border-t border-[#2d2d2d] pt-6">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-base">🎛️</span>
+            <h2 className="text-sm font-semibold text-[#f5f5f5]">System Overview</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            <AgentStatus agents={[]} />
+            <ProjectIndex projects={projects} />
+            <PriorityQueue items={[]} />
+            <CronJobs jobs={[]} />
+          </div>
+        </section>
+
         {/* My Tasks */}
         <section>
           <div className="flex items-center gap-2 mb-3">
