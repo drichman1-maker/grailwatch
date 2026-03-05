@@ -17,9 +17,9 @@ const STATUS_GROUPS = [
 export function AffiliateTracker({ affiliates, onUpdateStatus }: AffiliateTrackerProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const approved = affiliates.filter(a => STATUS_GROUPS[0].statuses.some(s => a.status?.includes(s)));
-  const pending = affiliates.filter(a => STATUS_GROUPS[1].statuses.some(s => a.status?.includes(s)));
-  const toApply = affiliates.filter(a => STATUS_GROUPS[2].statuses.some(s => a.status?.includes(s)));
+  const approved = affiliates.filter(a => STATUS_GROUPS[0].statuses.some(s => a.status?.toLowerCase().includes(s.toLowerCase())));
+  const pending = affiliates.filter(a => STATUS_GROUPS[1].statuses.some(s => a.status?.toLowerCase().includes(s.toLowerCase())));
+  const toApply = affiliates.filter(a => STATUS_GROUPS[2].statuses.some(s => a.status?.toLowerCase().includes(s.toLowerCase())));
 
   const displayed = expanded ? affiliates : affiliates.slice(0, 6);
 

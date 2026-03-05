@@ -214,11 +214,21 @@ const fallbackTasks = [
                 ))}
               </div>
               <div className="grid grid-cols-7 gap-1">
-                {Array.from({ length: 28 }, (_, i) => i + 1).map((day) => (
-                  <div key={day} className="aspect-square flex items-center justify-center text-xs rounded-md bg-[#2d2d2d] text-[#8a8a8a]">
-                    {day}
-                  </div>
-                ))}
+                {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => {
+                  const isToday = day === new Date().getDate();
+                  return (
+                    <div 
+                      key={day} 
+                      className={`aspect-square flex items-center justify-center text-xs rounded-md ${
+                        isToday 
+                          ? 'bg-[#5e6ad2] text-white font-bold' 
+                          : 'bg-[#2d2d2d] text-[#8a8a8a]'
+                      }`}
+                    >
+                      {day}
+                    </div>
+                  );
+                })}
               </div>
             </div>
             <div className="px-4 pb-3 text-xs text-[#5e6ad2]">Apr 2: Apple/B&H deadline</div>
