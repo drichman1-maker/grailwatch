@@ -88,18 +88,29 @@ When updates aren't showing in mission-control:
 
 ---
 
-## Working Dashboard URLs (Found 2026-03-05)
+## Working Dashboard (DECISION: Use Local HTML)
 
-**Old working dashboard (Vercel):**
-https://mission-control-liard-gamma.vercel.app/
+**Current Source of Truth:**
+`file:///Users/douglasrichman/.openclaw/workspace/mission-control.html`
 
-**Local file (working version):**
-file:///Users/douglasrichman/.openclaw/workspace/mission-control.html
+**Why local HTML:**
+- ✅ Works immediately (no dev server needed)
+- ✅ No Vercel deployment issues
+- ✅ Cleanest approach
+- ✅ Single file, easy to edit
 
-**Current v4.3 (Git repo):**
-http://localhost:3000 (when running `npm run dev`)
+**Failed attempts:**
+- ❌ Vercel deploys stuck on "Loading..."
+- ❌ Local Next.js had git repo issues
+- ❌ Complex build process
 
-**Note:** The old Vercel deployment still works and has the preferred styling. Current local development should match or exceed this quality.
+**New Workflow:**
+1. Edit: `~/.openclaw/workspace/mission-control.html`
+2. Save changes
+3. Refresh browser
+4. Done
+
+**No build step. No deploy. Just edit and refresh.**
 
 ---
 
