@@ -169,3 +169,43 @@ n- Reduce token spend by 70%
 **Kill talker session:** `openclaw sessions kill --agent talker`
 **List sessions:** `openclaw sessions list`
 **Kill specific:** `openclaw sessions kill <id>`
+
+---
+
+## Development Workflow (Updated 2026-03-05)
+
+### Dashboard/Mission Control Development
+**New Rule: Local-first, Vercel-last**
+
+**1. Develop Locally**
+```bash
+cd mission-control
+npm run dev
+```
+- Test at http://localhost:3000
+- Verify all components render
+- Check mobile responsiveness
+- Iterate quickly
+
+**2. Commit Changes**
+```bash
+git add -A
+git commit -m "vX.Y: Description"
+git push origin clean-deploy-2
+```
+
+**3. Deploy to Vercel ONLY when ready**
+```bash
+vercel --prod --yes
+```
+
+**Why this workflow:**
+- Vercel CLI has path/caching issues
+- Constant deploys are slow and error-prone
+- Local dev is instant feedback
+- Deploy only for production previews
+
+**Version Tracking:**
+- Use git commits: `git log --oneline`
+- Document in VERSIONS.md
+- URLs will show "v2" but git tracks actual versions

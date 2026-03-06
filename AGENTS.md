@@ -26,3 +26,12 @@ execute on the task at hand before moving on
 
 Use the dashboard for organization of current projects, codebases, affiliates, and current tasks. 
 
+
+Mint Condition (mintcondition.app): Graded pokemon card aggregator
+Coin Curator (coincurator.app): Graded collextible coin aggregator
+Rumble Deals: Video games (new and reto) aggregator
+Slugger Data (SluggerData.com): Graded Baseball card aggregator
+Comics/grail watch: (comics.mintcondition.app): Graded comic books aggregator
+
+Robot Atlas (no domain yet): Robot Aggregator 
+
