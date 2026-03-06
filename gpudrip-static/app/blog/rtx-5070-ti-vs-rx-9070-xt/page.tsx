@@ -1,52 +1,51 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const metadata: Metadata = {
-  title: 'RTX 5070 Ti vs RX 9070 XT: Which $749 GPU Wins in 2026? | GPU Drip',
-  description: 'Head-to-head comparison of NVIDIA and AMD\'s mid-range flagship battle.',
-}
+export const dynamic = 'force-static'
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <header className="border-b border-[#2a2a2a] bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <Link className="flex items-center gap-2" href="/">
-              <div className="w-8 h-8 bg-gradient-to-br from-[#00ff88] to-green-600 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+    <div style={{ minHeight: '100vh', background: '#080808', fontFamily: "'Inter', system-ui, sans-serif" }}>
+      {/* Header */}
+      <header style={{ borderBottom: '1px solid #222', background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', position: 'sticky', top: 0, zIndex: 50 }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '16px 24px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 8, textDecoration: 'none' }}>
+              <div style={{ width: 32, height: 32, background: 'linear-gradient(135deg, #22c55e, #166534)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#000" strokeWidth="2">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
                 </svg>
               </div>
-              <span className="text-xl font-bold text-white">GPUDrip</span>
+              <span style={{ fontSize: 20, fontWeight: 700, color: '#f0f0f0' }}>GPUDrip</span>
             </Link>
-            <nav className="flex items-center gap-4">
-              <Link className="text-sm text-[#888] hover:text-white transition-colors" href="/">GPUs</Link>
-              <Link className="text-sm text-[#00ff88]" href="/blog">Blog</Link>
+            <nav style={{ display: 'flex', gap: 16 }}>
+              <Link href="/" style={{ fontSize: 14, color: '#888', textDecoration: 'none' }}>GPUs</Link>
+              <Link href="/blog" style={{ fontSize: 14, color: '#22c55e', textDecoration: 'none' }}>Blog</Link>
             </nav>
           </div>
         </div>
       </header>
 
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <header className="mb-12 border-b border-[#2a2a2a] pb-8">
-          <div className="flex items-center gap-3 text-sm text-[#00ff88] mb-4">
+      <article style={{ maxWidth: '900px', margin: '0 auto', padding: '48px 24px' }}>
+        {/* Title */}
+        <header style={{ marginBottom: 48, borderBottom: '1px solid #222', paddingBottom: 32 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: 14, color: '#22c55e', marginBottom: 16 }}>
             <span>Comparison</span>
-            <span className="text-[#444]">•</span>
-            <span className="text-[#888]">March 3, 2026</span>
-            <span className="text-[#444]">•</span>
-            <span className="text-[#888]">10 min read</span>
+            <span style={{ color: '#333' }}>•</span>
+            <span style={{ color: '#888' }}>March 3, 2026</span>
+            <span style={{ color: '#333' }}>•</span>
+            <span style={{ color: '#888' }}>10 min read</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">RTX 5070 Ti vs RX 9070 XT: Which $749 GPU Wins in 2026?</h1>
-          <p className="text-xl text-[#888] leading-relaxed">The mid-range GPU battle everyone's been waiting for. NVIDIA's RTX 5070 Ti faces off against AMD's RX 9070 XT at the same $749 price point — but which one actually delivers better value for your build?</p>
+          <h1 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontWeight: 800, color: '#f0f0f0', marginBottom: 24, lineHeight: 1.2 }}>RTX 5070 Ti vs RX 9070 XT: Which $749 GPU Wins in 2026?</h1>
+          <p style={{ fontSize: 20, color: '#888', lineHeight: 1.6 }}>The mid-range GPU battle everyone's been waiting for. NVIDIA's RTX 5070 Ti faces off against AMD's RX 9070 XT at the same $749 price point — but which one actually delivers better value for your build?</p>
         </header>
 
-        <div className="bg-gradient-to-r from-[#00ff88]/10 to-green-900/10 border border-[#00ff88]/30 rounded-xl p-6 mb-12">
-          <h2 className="text-lg font-bold text-[#00ff88] mb-3">Quick Verdict</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+        {/* Quick Verdict */}
+        <div style={{ background: 'linear-gradient(90deg, rgba(34,197,94,0.1), rgba(34,197,94,0.05))', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 12, padding: 24, marginBottom: 48 }}>
+          <h2 style={{ fontSize: 18, fontWeight: 700, color: '#22c55e', marginBottom: 12 }}>Quick Verdict</h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: 24 }}>
             <div>
-              <h3 className="font-semibold text-white mb-2">Choose RTX 5070 Ti if:</h3>
-              <ul className="text-[#888] space-y-1 text-sm">
+              <h3 style={{ fontWeight: 600, color: '#f0f0f0', marginBottom: 8 }}>Choose RTX 5070 Ti if:</h3>
+              <ul style={{ color: '#888', fontSize: 14, lineHeight: 1.8 }}>
                 <li>• Ray tracing matters to you</li>
                 <li>• You use DLSS 4 Multi Frame Gen</li>
                 <li>• Content creation / NVENC encoding</li>
@@ -54,8 +53,8 @@ export default function Page() {
               </ul>
             </div>
             <div>
-              <h3 className="font-semibold text-white mb-2">Choose RX 9070 XT if:</h3>
-              <ul className="text-[#888] space-y-1 text-sm">
+              <h3 style={{ fontWeight: 600, color: '#f0f0f0', marginBottom: 8 }}>Choose RX 9070 XT if:</h3>
+              <ul style={{ color: '#888', fontSize: 14, lineHeight: 1.8 }}>
                 <li>• Raw rasterization performance</li>
                 <li>• More VRAM (20GB vs 16GB)</li>
                 <li>• Better price-to-performance</li>
@@ -65,114 +64,90 @@ export default function Page() {
           </div>
         </div>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Specs at a Glance</h2>
-          <div className="overflow-x-auto border border-[#2a2a2a] rounded-xl">
-            <table className="w-full text-sm">
+        {/* Specs Table */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#f0f0f0', marginBottom: 24 }}>Specs at a Glance</h2>
+          <div style={{ overflowX: 'auto', border: '1px solid #222', borderRadius: 12 }}>
+            <table style={{ width: '100%', fontSize: 14, borderCollapse: 'collapse' }}>
               <thead>
-                <tr className="bg-[#141414]">
-                  <th className="text-left p-4 text-white font-semibold border-b border-[#2a2a2a]">Spec</th>
-                  <th className="text-left p-4 text-[#00ff88] font-semibold border-b border-[#2a2a2a]">RTX 5070 Ti</th>
-                  <th className="text-left p-4 text-[#ff6b6b] font-semibold border-b border-[#2a2a2a]">RX 9070 XT</th>
+                <tr style={{ background: '#0f0f0f' }}>
+                  <th style={{ textAlign: 'left', padding: 16, color: '#f0f0f0', fontWeight: 600, borderBottom: '1px solid #222' }}>Spec</th>
+                  <th style={{ textAlign: 'left', padding: 16, color: '#22c55e', fontWeight: 600, borderBottom: '1px solid #222' }}>RTX 5070 Ti</th>
+                  <th style={{ textAlign: 'left', padding: 16, color: '#ef4444', fontWeight: 600, borderBottom: '1px solid #222' }}>RX 9070 XT</th>
                 </tr>
               </thead>
-              <tbody className="text-[#888]">
-                <tr className="border-b border-[#2a2a2a] hover:bg-[#141414]">
-                  <td className="p-4">Architecture</td>
-                  <td className="p-4">Blackwell 2.0</td>
-                  <td className="p-4">RDNA 4</td>
+              <tbody style={{ color: '#888' }}>
+                <tr style={{ borderBottom: '1px solid #222' }}>
+                  <td style={{ padding: 16 }}>Architecture</td>
+                  <td style={{ padding: 16 }}>Blackwell 2.0</td>
+                  <td style={{ padding: 16 }}>RDNA 4</td>
                 </tr>
-                <tr className="border-b border-[#2a2a2a] hover:bg-[#141414]">
-                  <td className="p-4">VRAM</td>
-                  <td className="p-4">16GB GDDR7</td>
-                  <td className="p-4 text-[#00ff88]">20GB GDDR6</td>
+                <tr style={{ borderBottom: '1px solid #222' }}>
+                  <td style={{ padding: 16 }}>VRAM</td>
+                  <td style={{ padding: 16 }}>16GB GDDR7</td>
+                  <td style={{ padding: 16, color: '#22c55e' }}>20GB GDDR6</td>
                 </tr>
-                <tr className="border-b border-[#2a2a2a] hover:bg-[#141414]">
-                  <td className="p-4">TDP</td>
-                  <td className="p-4">285W</td>
-                  <td className="p-4 text-[#00ff88]">260W</td>
+                <tr style={{ borderBottom: '1px solid #222' }}>
+                  <td style={{ padding: 16 }}>TDP</td>
+                  <td style={{ padding: 16 }}>285W</td>
+                  <td style={{ padding: 16, color: '#22c55e' }}>260W</td>
                 </tr>
-                <tr className="hover:bg-[#141414]">
-                  <td className="p-4">MSRP</td>
-                  <td className="p-4 font-bold text-white">$749</td>
-                  <td className="p-4 font-bold text-white">$749</td>
+                <tr>
+                  <td style={{ padding: 16 }}>MSRP</td>
+                  <td style={{ padding: 16, fontWeight: 700, color: '#f0f0f0' }}>$749</td>
+                  <td style={{ padding: 16, fontWeight: 700, color: '#f0f0f0' }}>$749</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </section>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Gaming Performance: 1440p Ultra</h2>
-          <p className="text-[#888] mb-6">These cards target 1440p high-refresh gaming. Here's how they stack up in popular titles without upscaling:</p>
-          <div className="bg-[#141414] border border-[#2a2a2a] rounded-xl p-6">
-            <p className="text-[#888]"><strong className="text-white">The takeaway:</strong> In pure rasterization, the RX 9070 XT wins by 5-10%. But enable ray tracing and NVIDIA's superior RT cores and DLSS 4 flip the script completely — often by 25-35%.</p>
+        {/* Gaming Performance */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#f0f0f0', marginBottom: 24 }}>Gaming Performance: 1440p Ultra</h2>
+          <p style={{ color: '#888', marginBottom: 24 }}>These cards target 1440p high-refresh gaming. In pure rasterization, the RX 9070 XT wins by 5-10%. But enable ray tracing and NVIDIA's superior RT cores and DLSS 4 flip the script completely — often by 25-35%.</p>
+        </section>
+
+        {/* Ray Tracing */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#f0f0f0', marginBottom: 24 }}>Ray Tracing: NVIDIA's Moat</h2>
+          <p style={{ color: '#888', marginBottom: 24 }}>Ray tracing is where NVIDIA maintains its decisive advantage. The 5070 Ti's 4th-gen RT cores handle path tracing in games like Alan Wake 2 and Cyberpunk with RT Overdrive far better than AMD's 2nd-gen implementation.</p>
+        </section>
+
+        {/* VRAM */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#f0f0f0', marginBottom: 24 }}>VRAM: The Quiet Advantage</h2>
+          <p style={{ color: '#888', marginBottom: 24 }}>20GB vs 16GB isn't just numbers on a spec sheet — it's increasingly important for texture-heavy games and future-proofing.</p>
+        </section>
+
+        {/* Price */}
+        <section style={{ marginBottom: 48 }}>
+          <h2 style={{ fontSize: 24, fontWeight: 700, color: '#f0f0f0', marginBottom: 24 }}>Price & Availability</h2>
+          <p style={{ color: '#888', marginBottom: 24 }}>Both cards launched at $749 MSRP. Street prices: RTX 5070 Ti is $829–$899 (limited stock), RX 9070 XT is $749–$779 (available).</p>
+          <div style={{ background: 'linear-gradient(90deg, rgba(34,197,94,0.1), transparent)', border: '1px solid rgba(34,197,94,0.3)', borderRadius: 12, padding: 24 }}>
+            <p style={{ color: '#f0f0f0', fontWeight: 600 }}>Value winner: RX 9070 XT at MSRP. You get more VRAM, better rasterization, and easier availability.</p>
           </div>
         </section>
 
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Ray Tracing: NVIDIA's Moat</h2>
-          <p className="text-[#888] mb-6">Ray tracing is where NVIDIA maintains its decisive advantage. The 5070 Ti's 4th-gen RT cores handle path tracing in games like Alan Wake 2 and Cyberpunk with RT Overdrive far better than AMD's 2nd-gen implementation.</p>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">VRAM: The Quiet Advantage</h2>
-          <p className="text-[#888] mb-6">20GB vs 16GB isn't just numbers on a spec sheet — it's increasingly important for texture-heavy games and future-proofing.</p>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-2xl font-bold text-white mb-6">Price & Availability Reality Check</h2>
-          <p className="text-[#888] mb-6">Both cards launched at $749 MSRP. But in early 2026, street prices tell a different story:</p>
-          <div className="grid md:grid-cols-2 gap-6 mb-6">
-            <div className="bg-[#141414] border border-[#2a2a2a] rounded-xl p-6">
-              <h3 className="text-[#00ff88] font-semibold mb-4">RTX 5070 Ti</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-[#888]">Street Price</span>
-                  <span className="text-[#ff6b6b]">$829–$899</span>
-                </div>
-              </div>
-            </div>
-            <div className="bg-[#141414] border border-[#2a2a2a] rounded-xl p-6">
-              <h3 className="text-[#ff6b6b] font-semibold mb-4">RX 9070 XT</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-[#888]">Street Price</span>
-                  <span className="text-[#00ff88]">$749–$779</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="bg-gradient-to-r from-[#00ff88]/10 to-transparent border border-[#00ff88]/30 rounded-xl p-6">
-            <p className="text-white"><strong>Value winner:</strong> RX 9070 XT at MSRP. You get more VRAM, better rasterization, and easier availability.</p>
-          </div>
-        </section>
-
-        <section className="mb-12">
-          <div className="bg-[#00ff88] rounded-xl p-6 text-center">
-            <h2 className="text-black font-bold text-xl mb-2">Track Both GPUs on GPUDrip</h2>
-            <p className="text-black/80 mb-4">Get instant alerts when RTX 5070 Ti or RX 9070 XT drops below MSRP at major retailers.</p>
-            <Link className="inline-block bg-black text-[#00ff88] px-6 py-3 rounded-lg font-semibold hover:bg-black/80 transition-colors" href="/">Set Price Alert</Link>
-          </div>
-        </section>
-
-        <section className="border-t border-[#2a2a2a] pt-8">
-          <h3 className="text-white font-semibold mb-4">Related Articles</h3>
-          <div className="space-y-3">
-            <Link className="block text-[#888] hover:text-[#00ff88] transition-colors" href="/blog/rtx-50-series-buyers-guide">RTX 50-Series Buyer's Guide: Which GPU to Buy in 2026 →</Link>
-            <Link className="block text-[#888] hover:text-[#00ff88] transition-colors" href="/blog/amd-vs-nvidia-2026">AMD vs NVIDIA in 2026: The Complete Comparison →</Link>
+        {/* CTA */}
+        <section style={{ marginBottom: 48 }}>
+          <div style={{ background: '#22c55e', borderRadius: 12, padding: 24, textAlign: 'center' }}>
+            <h2 style={{ color: '#000', fontWeight: 700, fontSize: 20, marginBottom: 8 }}>Track Both GPUs on GPUDrip</h2>
+            <p style={{ color: 'rgba(0,0,0,0.7)', marginBottom: 16 }}>Get instant alerts when prices drop below MSRP.</p>
+            <Link href="/" style={{ display: 'inline-block', background: '#000', color: '#22c55e', padding: '12px 24px', borderRadius: 8, fontWeight: 600, textDecoration: 'none' }}>Set Price Alert</Link>
           </div>
         </section>
       </article>
 
-      <footer className="border-t border-[#2a2a2a] mt-16 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-[#888] text-sm">
-            <Link className="hover:text-[#00ff88] mx-2" href="/privacy">Privacy</Link>
-            <span className="text-[#333]">|</span>
-            <Link className="hover:text-[#00ff88] mx-2" href="/blog">Blog</Link>
+      {/* Footer */}
+      <footer style={{ borderTop: '1px solid #222', marginTop: 64, padding: '32px 24px' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+          <p style={{ fontSize: 14, color: '#888' }}>
+            <Link href="/privacy" style={{ color: '#888', textDecoration: 'none', marginRight: 8 }}>Privacy</Link>
+            <span style={{ color: '#333', marginRight: 8 }}>|</span>
+            <Link href="/blog" style={{ color: '#888', textDecoration: 'none', marginLeft: 8 }}>Blog</Link>
           </p>
-          <p className="text-[#888] text-sm mt-2">© 2026 GPUDrip</p>
+          <p style={{ fontSize: 14, color: '#888', marginTop: 8 }}>© 2026 GPUDrip</p>
         </div>
       </footer>
     </div>

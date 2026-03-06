@@ -124,6 +124,46 @@
 
 ---
 
+## 9 Active Tasks (Priority Order)
+
+### 1. Price Scraping & Automation 🔥
+**Tools:** Scrapling (https://github.com/D4Vinci/Scrapling)
+**Sites:** Mactrackr, GPU Drip, Health Index
+**Daily:** Work on price checks, alerts, history tracking
+
+### 2. Alerts System
+**Sites:** Mactrackr, GPU Drip
+**Features:** Price drop alerts, stock alerts
+
+### 3. Affiliate Integration 💰
+**Approved:** Amazon (~4%), eBay (~4%), America Cryo (~8%, aff=311)
+**Pending:** Check Sunlighten, Joovv, Four Sigmatic, Skimlinks
+**Daily:** Integrate links across all sites
+
+### 4. GPU Drip Expansion
+**Add retailers:** ExtremeTech, Tom's Hardware, PCMag
+**Add search:** Products page, Blog page
+
+### 5. Mactrackr Fixes
+**CRITICAL:** Change mactrackr.app → mactrackr.com
+**Check Apple URL redirects**
+
+### 6. BabyGear Buildout 🔥
+**Pages needed:** Products, Supplies, Registry, Lifecycle guides
+**Status:** In progress
+
+### 7. Account Integration
+**Gmail/Apple:** For app accounts and notifications
+
+### 8. Marketing Push (When Ready)
+**Channels:** SEO, Reddit, social media
+**Blocked until:** Sites fully operational
+
+### 9. GPU Drip Search
+**Add search bar:** Products page, Blog page
+
+---
+
 ## Quick Commands
 
 **Reset sessions:**
