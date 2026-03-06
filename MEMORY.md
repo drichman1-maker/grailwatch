@@ -15,6 +15,92 @@
 ### Current Pain Point
 OpenClaw files are unorganized and bloated. Need cleaner tracking system.
 
+### Critical Finding (2026-03-05)
+**mission-control/ was NOT a git repository!** It was inside the workspace repo but untracked. This caused:
+- Commits went to parent repo instead of mission-control
+- Changes not appearing in browser
+- Lost work and confusion
+
+### Fix Applied (v4.3)
+1. Initialized git in mission-control/: `git init`
+2. Created proper repo with all files
+3. Committed as v4.3: "Initialize repo with all components"
+4. Now mission-control is standalone repo with full history
+
+### New Workflow for mission-control
+Since it's now its own repo:
+```bash
+cd ~/.openclaw/workspace/mission-control
+# Work on files...
+git add -A
+git commit -m "vX.Y: Description"
+git log --oneline  # See version history
+```
+
+### IMPORTANT: Git Structure
+- `~/.openclaw/workspace/` = Main workspace repo
+- `~/.openclaw/workspace/mission-control/` = **Separate repo** (dashboard)
+- Each project folder may be its own repo or part of workspace
+- **Always check if folder has .git before committing**
+
+### Full Process for Fixing Dashboard Issues (Documented for Future)
+When updates aren't showing in mission-control:
+
+1. **Check if it's a git repo:**
+   ```bash
+   ls ~/.openclaw/workspace/mission-control/.git
+   ```
+
+2. **If NO .git folder:**
+   ```bash
+   cd ~/.openclaw/workspace/mission-control
+   git init
+   git add -A
+   git commit -m "vX.Y: Initialize repo with all changes"
+   ```
+
+3. **Kill old dev server:**
+   ```bash
+   pkill -f "npm run dev"
+   # Or find PID: lsof -i :3000
+   ```
+
+4. **Restart dev server:**
+   ```bash
+   cd ~/.openclaw/workspace/mission-control
+   npm run dev
+   ```
+
+5. **Test at:** http://localhost:3000
+
+6. **Make changes, then commit:**
+   ```bash
+   git add -A
+   git commit -m "vX.Y: Description"
+   ```
+
+7. **Deploy to Vercel ONLY when ready:**
+   ```bash
+   vercel --prod --yes
+   ```
+
+**Root cause this time:** mission-control/ wasn't a git repo, so changes weren't tracked properly.
+
+---
+
+## Working Dashboard URLs (Found 2026-03-05)
+
+**Old working dashboard (Vercel):**
+https://mission-control-liard-gamma.vercel.app/
+
+**Local file (working version):**
+file:///Users/douglasrichman/.openclaw/workspace/mission-control.html
+
+**Current v4.3 (Git repo):**
+http://localhost:3000 (when running `npm run dev`)
+
+**Note:** The old Vercel deployment still works and has the preferred styling. Current local development should match or exceed this quality.
+
 ---
 
 ## Project Priority Matrix (Updated 2026-03-05)
